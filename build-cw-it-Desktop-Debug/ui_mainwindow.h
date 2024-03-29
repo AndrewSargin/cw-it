@@ -17,6 +17,7 @@
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QTabWidget>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -29,6 +30,7 @@ public:
     QAction *action_3;
     QAction *action_4;
     QWidget *centralwidget;
+    QTabWidget *tabWidget;
     QMenuBar *menubar;
     QMenu *menu;
     QMenu *menu_2;
@@ -50,6 +52,11 @@ public:
         action_4->setObjectName(QString::fromUtf8("action_4"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
+        tabWidget = new QTabWidget(centralwidget);
+        tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
+        tabWidget->setGeometry(QRect(-4, -1, 801, 561));
+        tabWidget->setTabsClosable(true);
+        tabWidget->setMovable(true);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -71,6 +78,9 @@ public:
         menu_2->addAction(action_4);
 
         retranslateUi(MainWindow);
+
+        tabWidget->setCurrentIndex(-1);
+
 
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi

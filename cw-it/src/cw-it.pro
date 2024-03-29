@@ -10,16 +10,22 @@ CONFIG += c++11
 
 SOURCES += \
     about.cpp \
+    filehandler.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    tabpage.cpp
 
 HEADERS += \
     about.h \
-    mainwindow.h
+    filehandler.h \
+    filestructure.h \
+    mainwindow.h \
+    tabpage.h
 
 FORMS += \
     about.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    tabpage.ui
 
 TRANSLATIONS += \
     cw-it_ru_RU.ts
