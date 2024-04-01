@@ -6,7 +6,7 @@
 
 struct openedFile
 {
-    const char* filePath;
+    std::string filePath;
     std::string fileName;
     std::vector<std::vector<std::string>> data;
     std::vector<std::string> id;

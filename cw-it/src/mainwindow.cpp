@@ -51,5 +51,12 @@ void MainWindow::on_action_triggered()
 void MainWindow::on_tabWidget_tabCloseRequested(int index)
 {
     ui->tabWidget->removeTab(index);
+    fileHandler->close(index);
+}
+
+
+void MainWindow::on_action_2_triggered()
+{
+    fileHandler->save(ui->tabWidget->currentIndex());
 }
 

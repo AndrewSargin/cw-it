@@ -14,9 +14,8 @@ FileHandler::FileHandler()
 int FileHandler::open(QWidget *parent, struct openedFile *file)
 {
     QString fileName = QFileDialog::getOpenFileName(parent, QObject::tr("Open File"), "/home");
-    const char* filePath = fileName.toUtf8().constData();
-    /*FILE *openedFile;
-    openedFile = fopen(filePath, "r");*/
+    //const char* filePath = fileName.toUtf8().constData();
+    std::string filePath = fileName.toUtf8().constData();
 
     std::ifstream openedFile(filePath);
     std::string fileCheck;
@@ -25,20 +24,11 @@ int FileHandler::open(QWidget *parent, struct openedFile *file)
     std::string stream;
     std::string delimiter = ";";
 
-
-
-    //сделать экземпляр файла, передать в open, там заполнить, и передать в tabpage
-
-
-
-
-
-
     std::getline(openedFile, fileCheck);
 
     if(fileCheck.compare("===cw-it===") != 0)
     {
-        FileHandler::close(file);
+        //FileHandler::close(file);
         QDialog *fileErrorWindow = new QDialog();
         fileErrorWindow->setWindowTitle(QObject::tr("Error while reading file"));
         fileErrorWindow->show();
@@ -74,16 +64,34 @@ int FileHandler::open(QWidget *parent, struct openedFile *file)
     file->data.push_back(file->date);
     file->data.push_back(file->price);
 
-    files_vector.push_back(file);
+    openedFile.close();
 
     return 1;
 
 }
 
-int FileHandler::close(struct openedFile *file){
+int FileHandler::close(int index)
+{
 
-    free(file);
+     files_vector.erase(files_vector.begin()+index);
     return 1;
+}
+
+void FileHandler::save(int index)
+{
+    struct openedFile *dataToSave = files_vector[index];
+    std::ofstream fileToSave(dataToSave->filePath);
+    fileToSave << "===cw-it===\n";
+    for(unsigned long i = 0; i < dataToSave->cpu.size(); i++)
+    {
+        fileToSave << dataToSave->id[i] << ";" << dataToSave->type[i] << ";" << dataToSave->cpu[i] << ";"
+                   << dataToSave->gpu[i] << ";" << dataToSave->ram[i] << ";" << dataToSave->memory[i] << ";"
+                   << dataToSave->price[i] << ";" << dataToSave->price[i] << ";\n";
+
+    }
+
+    fileToSave.close();
+
 }
 
 std::string FileHandler::getFileName()

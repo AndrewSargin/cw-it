@@ -12,8 +12,8 @@ class FileHandler
         FileHandler();
 
         int open(QWidget *parent, struct openedFile *);
-        int close(struct openedFile *);
-        void save();
+        int close(int index);
+        void save(int index);
         std::string getFileName();
 
     private:
