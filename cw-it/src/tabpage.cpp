@@ -7,17 +7,17 @@ TabPage::TabPage(QWidget *parent, openedFile *file) :
 {
     ui->setupUi(this);
     ui->tableWidget->setColumnCount(8);
-    ui->tableWidget->setRowCount(file->cpu.size());
-    for (unsigned long i=0; i<file->cpu.size(); i++)
+    ui->tableWidget->setRowCount(file->data.size());
+    for (unsigned long i=0; i<file->data.size(); i++)
     {
-    ui->tableWidget->setItem(i, 1, new QTableWidgetItem(QString::fromStdString(file->type[i])));
-    ui->tableWidget->setItem(i, 0, new QTableWidgetItem(QString::fromStdString(file->id[i])));
-    ui->tableWidget->setItem(i, 2, new QTableWidgetItem(QString::fromStdString(file->cpu[i])));
-    ui->tableWidget->setItem(i, 3, new QTableWidgetItem(QString::fromStdString(file->gpu[i])));
-    ui->tableWidget->setItem(i, 4, new QTableWidgetItem(QString::fromStdString(file->ram[i])));
-    ui->tableWidget->setItem(i, 5, new QTableWidgetItem(QString::fromStdString(file->memory[i])));
-    ui->tableWidget->setItem(i, 6, new QTableWidgetItem(QString::fromStdString(file->date[i])));
-    ui->tableWidget->setItem(i, 7, new QTableWidgetItem(QString::fromStdString(file->price[i])));
+    ui->tableWidget->setItem(i, 1, new QTableWidgetItem(QString::fromStdString(file->data[i].getType())));
+    ui->tableWidget->setItem(i, 0, new QTableWidgetItem(QString::fromStdString(file->data[i].getId())));
+    ui->tableWidget->setItem(i, 2, new QTableWidgetItem(QString::fromStdString(file->data[i].getCpu())));
+    ui->tableWidget->setItem(i, 3, new QTableWidgetItem(QString::fromStdString(file->data[i].getGpu())));
+    ui->tableWidget->setItem(i, 4, new QTableWidgetItem(QString::fromStdString(file->data[i].getRam())));
+    ui->tableWidget->setItem(i, 5, new QTableWidgetItem(QString::fromStdString(file->data[i].getMemory())));
+    ui->tableWidget->setItem(i, 6, new QTableWidgetItem(QString::fromStdString(file->data[i].getDate())));
+    ui->tableWidget->setItem(i, 7, new QTableWidgetItem(QString::fromStdString(file->data[i].getPrice())));
     }
 }
 

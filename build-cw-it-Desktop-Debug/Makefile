@@ -37,7 +37,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = cw-it1.0.0
-DISTDIR = /home/vboxuser/Documents/Uni/Kurs\ 2/build-cw-it-Desktop-Debug/.tmp/cw-it1.0.0
+DISTDIR = /home/vboxuser/Documents/Kurs\ 2/build-cw-it-Desktop-Debug/.tmp/cw-it1.0.0
 LINK          = g++
 LFLAGS        = 
 LIBS          = $(SUBLIBS) /usr/lib/x86_64-linux-gnu/libQt5Widgets.so /usr/lib/x86_64-linux-gnu/libQt5Gui.so /usr/lib/x86_64-linux-gnu/libQt5Core.so -lGL -lpthread   
@@ -53,6 +53,7 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../cw-it/src/about.cpp \
+		../cw-it/src/entity.cpp \
 		../cw-it/src/filehandler.cpp \
 		../cw-it/src/main.cpp \
 		../cw-it/src/mainwindow.cpp \
@@ -61,6 +62,7 @@ SOURCES       = ../cw-it/src/about.cpp \
 		moc_mainwindow.cpp \
 		moc_tabpage.cpp
 OBJECTS       = about.o \
+		entity.o \
 		filehandler.o \
 		main.o \
 		mainwindow.o \
@@ -149,10 +151,12 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
 		../cw-it/cw-it/src/cw-it.pro ../cw-it/src/about.h \
+		../cw-it/src/entity.h \
 		../cw-it/src/filehandler.h \
 		../cw-it/src/filestructure.h \
 		../cw-it/src/mainwindow.h \
 		../cw-it/src/tabpage.h ../cw-it/src/about.cpp \
+		../cw-it/src/entity.cpp \
 		../cw-it/src/filehandler.cpp \
 		../cw-it/src/main.cpp \
 		../cw-it/src/mainwindow.cpp \
@@ -348,8 +352,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents ../cw-it/src/cw-it_ru_RU.ts $(DISTDIR)/
 	$(COPY_FILE) --parents qmake_qmake_qm_files.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../cw-it/src/about.h ../cw-it/src/filehandler.h ../cw-it/src/filestructure.h ../cw-it/src/mainwindow.h ../cw-it/src/tabpage.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../cw-it/src/about.cpp ../cw-it/src/filehandler.cpp ../cw-it/src/main.cpp ../cw-it/src/mainwindow.cpp ../cw-it/src/tabpage.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../cw-it/src/about.h ../cw-it/src/entity.h ../cw-it/src/filehandler.h ../cw-it/src/filestructure.h ../cw-it/src/mainwindow.h ../cw-it/src/tabpage.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../cw-it/src/about.cpp ../cw-it/src/entity.cpp ../cw-it/src/filehandler.cpp ../cw-it/src/main.cpp ../cw-it/src/mainwindow.cpp ../cw-it/src/tabpage.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../cw-it/src/about.ui ../cw-it/src/mainwindow.ui ../cw-it/src/tabpage.ui $(DISTDIR)/
 	$(COPY_FILE) --parents ../cw-it/src/cw-it_ru_RU.ts $(DISTDIR)/
 
@@ -401,18 +405,20 @@ compiler_moc_header_clean:
 moc_about.cpp: ../cw-it/src/about.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vboxuser/Documents/Uni/Kurs 2/build-cw-it-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vboxuser/Documents/Uni/Kurs 2/cw-it/src' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../cw-it/src/about.h -o moc_about.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vboxuser/Documents/Kurs 2/build-cw-it-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vboxuser/Documents/Kurs 2/cw-it/src' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../cw-it/src/about.h -o moc_about.cpp
 
 moc_mainwindow.cpp: ../cw-it/src/mainwindow.h \
 		../cw-it/src/about.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vboxuser/Documents/Uni/Kurs 2/build-cw-it-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vboxuser/Documents/Uni/Kurs 2/cw-it/src' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../cw-it/src/mainwindow.h -o moc_mainwindow.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vboxuser/Documents/Kurs 2/build-cw-it-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vboxuser/Documents/Kurs 2/cw-it/src' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../cw-it/src/mainwindow.h -o moc_mainwindow.cpp
 
 moc_tabpage.cpp: ../cw-it/src/tabpage.h \
+		../cw-it/src/filestructure.h \
+		../cw-it/src/entity.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vboxuser/Documents/Uni/Kurs 2/build-cw-it-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vboxuser/Documents/Uni/Kurs 2/cw-it/src' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../cw-it/src/tabpage.h -o moc_tabpage.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vboxuser/Documents/Kurs 2/build-cw-it-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vboxuser/Documents/Kurs 2/cw-it/src' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../cw-it/src/tabpage.h -o moc_tabpage.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -447,8 +453,12 @@ about.o: ../cw-it/src/about.cpp ../cw-it/src/about.h \
 		ui_about.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o about.o ../cw-it/src/about.cpp
 
+entity.o: ../cw-it/src/entity.cpp ../cw-it/src/entity.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o entity.o ../cw-it/src/entity.cpp
+
 filehandler.o: ../cw-it/src/filehandler.cpp ../cw-it/src/filehandler.h \
-		../cw-it/src/filestructure.h
+		../cw-it/src/filestructure.h \
+		../cw-it/src/entity.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o filehandler.o ../cw-it/src/filehandler.cpp
 
 main.o: ../cw-it/src/main.cpp ../cw-it/src/mainwindow.h \
@@ -459,11 +469,14 @@ mainwindow.o: ../cw-it/src/mainwindow.cpp ../cw-it/src/mainwindow.h \
 		../cw-it/src/about.h \
 		ui_mainwindow.h \
 		../cw-it/src/tabpage.h \
-		../cw-it/src/filehandler.h \
-		../cw-it/src/filestructure.h
+		../cw-it/src/filestructure.h \
+		../cw-it/src/entity.h \
+		../cw-it/src/filehandler.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../cw-it/src/mainwindow.cpp
 
 tabpage.o: ../cw-it/src/tabpage.cpp ../cw-it/src/tabpage.h \
+		../cw-it/src/filestructure.h \
+		../cw-it/src/entity.h \
 		ui_tabpage.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tabpage.o ../cw-it/src/tabpage.cpp
 

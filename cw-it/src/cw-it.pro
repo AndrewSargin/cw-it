@@ -10,6 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     about.cpp \
+    entity.cpp \
     filehandler.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -17,6 +18,7 @@ SOURCES += \
 
 HEADERS += \
     about.h \
+    entity.h \
     filehandler.h \
     filestructure.h \
     mainwindow.h \

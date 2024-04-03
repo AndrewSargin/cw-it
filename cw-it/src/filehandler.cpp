@@ -5,6 +5,7 @@
 #include <string>
 #include <QFileDialog>
 #include <QObject>
+#include <entity.h>
 
 FileHandler::FileHandler()
 {
@@ -44,7 +45,7 @@ int FileHandler::open(QWidget *parent, struct openedFile *file)
 
     while(std::getline(openedFile, fileLine))
     {
-        std::vector<std::string> columnValues = SeparateLine(fileLine, ";");
+        /*std::vector<std::string> columnValues = SeparateLine(fileLine, ";");
         file->id.push_back(columnValues[0]);
         file->type.push_back(columnValues[1]);
         file->cpu.push_back(columnValues[2]);
@@ -52,17 +53,31 @@ int FileHandler::open(QWidget *parent, struct openedFile *file)
         file->ram.push_back(columnValues[4]);
         file->memory.push_back(columnValues[5]);
         file->date.push_back(columnValues[6]);
-        file->price.push_back(columnValues[7]);
+        file->price.push_back(columnValues[7]);*/
+
+        std::vector<std::string> columnValues = SeparateLine(fileLine, ";");
+        entity entity;
+        entity.setId(columnValues[0]);
+        entity.setType(columnValues[1]);
+        entity.setCpu(columnValues[2]);
+        entity.setGpu(columnValues[3]);
+        entity.setRam(columnValues[4]);
+        entity.setMemory(columnValues[5]);
+        entity.setDate(columnValues[6]);
+        entity.setPrice(columnValues[7]);
+
+        file->data.push_back(entity);
+
     }
 
-    file->data.push_back(file->id);
+    /*file->data.push_back(file->id);
     file->data.push_back(file->type);
     file->data.push_back(file->cpu);
     file->data.push_back(file->gpu);
     file->data.push_back(file->ram);
     file->data.push_back(file->memory);
     file->data.push_back(file->date);
-    file->data.push_back(file->price);
+    file->data.push_back(file->price);*/
 
     openedFile.close();
 
@@ -82,12 +97,12 @@ void FileHandler::save(int index)
     struct openedFile *dataToSave = files_vector[index];
     std::ofstream fileToSave(dataToSave->filePath);
     fileToSave << "===cw-it===\n";
-    for(unsigned long i = 0; i < dataToSave->cpu.size(); i++)
+    for(unsigned long i = 0; i < dataToSave->data.size(); i++)
     {
-        fileToSave << dataToSave->id[i] << ";" << dataToSave->type[i] << ";" << dataToSave->cpu[i] << ";"
-                   << dataToSave->gpu[i] << ";" << dataToSave->ram[i] << ";" << dataToSave->memory[i] << ";"
-                   << dataToSave->price[i] << ";" << dataToSave->price[i] << ";\n";
-
+        fileToSave << dataToSave->data[i].getId() << ";" << dataToSave->data[i].getType() << ";" <<
+                      dataToSave->data[i].getCpu() << ";" << dataToSave->data[i].getGpu() << ";" <<
+                      dataToSave->data[i].getRam() << ";" << dataToSave->data[i].getMemory() << ";" <<
+                      dataToSave->data[i].getDate() << ";" << dataToSave->data[i].getPrice() << ";\n";
     }
 
     fileToSave.close();
