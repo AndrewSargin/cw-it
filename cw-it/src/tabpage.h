@@ -2,7 +2,7 @@
 #define TABPAGE_H
 
 #include <QWidget>
-#include <filestructure.h>
+#include <openedfile.h>
 
 namespace Ui {
 class TabPage;
@@ -13,13 +13,13 @@ class TabPage : public QWidget
     Q_OBJECT
 
 public:
-    explicit TabPage(QWidget *parent = nullptr, openedFile *file = nullptr);
+    explicit TabPage(QWidget *parent = nullptr, OpenedFile *file = nullptr);
     ~TabPage();
 
 private:
 
     Ui::TabPage *ui;
-    openedFile *file;
+    OpenedFile file;
 
 };
 

@@ -10,19 +10,23 @@ CONFIG += c++11
 
 SOURCES += \
     about.cpp \
-    entity.cpp \
+    entry.cpp \
     filehandler.cpp \
     main.cpp \
     mainwindow.cpp \
-    tabpage.cpp
+    openedfile.cpp \
+    tabpage.cpp \
+    technical.cpp
 
 HEADERS += \
     about.h \
-    entity.h \
+    constants.h \
+    entry.h \
     filehandler.h \
-    filestructure.h \
     mainwindow.h \
-    tabpage.h
+    openedfile.h \
+    tabpage.h \
+    technical.h
 
 FORMS += \
     about.ui \

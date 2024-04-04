@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include <cstdio>
-#include "filestructure.h"
+#include "openedfile.h"
 
 class FileHandler
 {
@@ -11,16 +11,14 @@ class FileHandler
 
         FileHandler();
 
-        int open(QWidget *parent, struct openedFile *);
+        int open(QWidget *parent, OpenedFile *file);
         int close(int index);
         void save(int index);
         std::string getFileName();
 
     private:
 
-        std::vector<openedFile*> files_vector;
-
-        std::vector<std::string> SeparateLine(std::string line, std::string delimiter);
+        std::vector<OpenedFile> files_vector;
 
 };
 
