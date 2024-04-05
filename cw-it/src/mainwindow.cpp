@@ -57,6 +57,6 @@ void MainWindow::on_tabWidget_tabCloseRequested(int index)
 
 void MainWindow::on_action_2_triggered()
 {
-    //fileHandler->save(ui->tabWidget->currentIndex());
+    fileHandler.save(ui->tabWidget->currentIndex());
 }
 
