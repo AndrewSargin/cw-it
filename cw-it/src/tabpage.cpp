@@ -20,7 +20,10 @@ TabPage::TabPage(QWidget *parent, OpenedFile *file) :
     {
         for(int j = 0; j < 11; j++)
         {
-            ui->tableWidget->setItem(i, j, new QTableWidgetItem(QString::fromStdString(file->data.at(iterator->first).properties.at(entryProps[j]))));
+            QTableWidgetItem *item = new QTableWidgetItem(QString::fromStdString(file->data.at(iterator->first).properties.at(entryProps[j])));
+            ui->tableWidget->setItem(i, j, item);
+            if (j == 0)
+                item->setFlags(item->flags() ^ Qt::ItemIsEditable);
         }
         iterator++;
     }
