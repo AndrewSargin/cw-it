@@ -16,10 +16,13 @@ public:
     explicit TabPage(QWidget *parent = nullptr, OpenedFile *file = nullptr);
     ~TabPage();
 
+private slots:
+    void on_tableWidget_cellChanged(int row, int column);
+
 private:
 
     Ui::TabPage *ui;
-    OpenedFile file;
+    OpenedFile *currentFile;
 
 };
 

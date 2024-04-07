@@ -18,7 +18,7 @@ class FileHandler
 
     private:
 
-        std::vector<OpenedFile> files_vector;
+        std::vector<OpenedFile*> files_vector;
 
 };
 

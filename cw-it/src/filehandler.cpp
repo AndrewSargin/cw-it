@@ -47,7 +47,7 @@ int FileHandler::open(QWidget *parent, OpenedFile *file)
 
     }
 
-    files_vector.push_back(*file);
+    files_vector.push_back(file);
 
     openedFile.close();
 
@@ -64,14 +64,14 @@ int FileHandler::close(int index)
 
 void FileHandler::save(int index)
 {
-    OpenedFile dataToSave = files_vector[index];
-    std::ofstream fileToSave(dataToSave.filePath);
+    OpenedFile *dataToSave = files_vector[index];
+    std::ofstream fileToSave(dataToSave->filePath);
     fileToSave << "===cw-it===\n";
-    for(auto i = dataToSave.data.begin(); i != dataToSave.data.end(); i++)
+    for(auto i = dataToSave->data.begin(); i != dataToSave->data.end(); i++)
     {
         for(int j = 0; j < 11; j++)
         {
-            fileToSave << dataToSave.data.at(i->first).properties.at(entryProps[j]);
+            fileToSave << dataToSave->data.at(i->first).properties.at(entryProps[j]);
             fileToSave << ";";
 
             if(j == 10)
@@ -85,5 +85,5 @@ void FileHandler::save(int index)
 
 std::string FileHandler::getFileName()
 {
-    return files_vector.back().fileName;
+    return files_vector.back()->fileName;
 }

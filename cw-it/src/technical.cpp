@@ -23,3 +23,5 @@ vector<string> SplitLine (string line, string delimiter)
 
     return vector;
 }
+
+//float PriceValidation();
