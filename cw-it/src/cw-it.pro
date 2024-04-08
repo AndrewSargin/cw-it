@@ -16,7 +16,8 @@ SOURCES += \
     mainwindow.cpp \
     openedfile.cpp \
     tabpage.cpp \
-    technical.cpp
+    technical.cpp \
+    validator.cpp
 
 HEADERS += \
     about.h \
@@ -26,7 +27,8 @@ HEADERS += \
     mainwindow.h \
     openedfile.h \
     tabpage.h \
-    technical.h
+    technical.h \
+    validator.h
 
 FORMS += \
     about.ui \

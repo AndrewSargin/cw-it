@@ -59,7 +59,8 @@ SOURCES       = ../cw-it/src/about.cpp \
 		../cw-it/src/mainwindow.cpp \
 		../cw-it/src/openedfile.cpp \
 		../cw-it/src/tabpage.cpp \
-		../cw-it/src/technical.cpp qrc_qmake_qmake_qm_files.cpp \
+		../cw-it/src/technical.cpp \
+		../cw-it/src/validator.cpp qrc_qmake_qmake_qm_files.cpp \
 		moc_about.cpp \
 		moc_mainwindow.cpp \
 		moc_tabpage.cpp
@@ -71,6 +72,7 @@ OBJECTS       = about.o \
 		openedfile.o \
 		tabpage.o \
 		technical.o \
+		validator.o \
 		qrc_qmake_qmake_qm_files.o \
 		moc_about.o \
 		moc_mainwindow.o \
@@ -161,14 +163,16 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		../cw-it/src/mainwindow.h \
 		../cw-it/src/openedfile.h \
 		../cw-it/src/tabpage.h \
-		../cw-it/src/technical.h ../cw-it/src/about.cpp \
+		../cw-it/src/technical.h \
+		../cw-it/src/validator.h ../cw-it/src/about.cpp \
 		../cw-it/src/entry.cpp \
 		../cw-it/src/filehandler.cpp \
 		../cw-it/src/main.cpp \
 		../cw-it/src/mainwindow.cpp \
 		../cw-it/src/openedfile.cpp \
 		../cw-it/src/tabpage.cpp \
-		../cw-it/src/technical.cpp
+		../cw-it/src/technical.cpp \
+		../cw-it/src/validator.cpp
 QMAKE_TARGET  = cw-it
 DESTDIR       = 
 TARGET        = cw-it
@@ -360,8 +364,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents ../cw-it/src/cw-it_ru_RU.ts $(DISTDIR)/
 	$(COPY_FILE) --parents qmake_qmake_qm_files.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../cw-it/src/about.h ../cw-it/src/constants.h ../cw-it/src/entry.h ../cw-it/src/filehandler.h ../cw-it/src/mainwindow.h ../cw-it/src/openedfile.h ../cw-it/src/tabpage.h ../cw-it/src/technical.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../cw-it/src/about.cpp ../cw-it/src/entry.cpp ../cw-it/src/filehandler.cpp ../cw-it/src/main.cpp ../cw-it/src/mainwindow.cpp ../cw-it/src/openedfile.cpp ../cw-it/src/tabpage.cpp ../cw-it/src/technical.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../cw-it/src/about.h ../cw-it/src/constants.h ../cw-it/src/entry.h ../cw-it/src/filehandler.h ../cw-it/src/mainwindow.h ../cw-it/src/openedfile.h ../cw-it/src/tabpage.h ../cw-it/src/technical.h ../cw-it/src/validator.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../cw-it/src/about.cpp ../cw-it/src/entry.cpp ../cw-it/src/filehandler.cpp ../cw-it/src/main.cpp ../cw-it/src/mainwindow.cpp ../cw-it/src/openedfile.cpp ../cw-it/src/tabpage.cpp ../cw-it/src/technical.cpp ../cw-it/src/validator.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../cw-it/src/about.ui ../cw-it/src/mainwindow.ui ../cw-it/src/tabpage.ui $(DISTDIR)/
 	$(COPY_FILE) --parents ../cw-it/src/cw-it_ru_RU.ts $(DISTDIR)/
 
@@ -494,11 +498,15 @@ tabpage.o: ../cw-it/src/tabpage.cpp ../cw-it/src/tabpage.h \
 		../cw-it/src/openedfile.h \
 		../cw-it/src/entry.h \
 		ui_tabpage.h \
-		../cw-it/src/constants.h
+		../cw-it/src/constants.h \
+		../cw-it/src/validator.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tabpage.o ../cw-it/src/tabpage.cpp
 
 technical.o: ../cw-it/src/technical.cpp ../cw-it/src/technical.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o technical.o ../cw-it/src/technical.cpp
+
+validator.o: ../cw-it/src/validator.cpp ../cw-it/src/validator.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o validator.o ../cw-it/src/validator.cpp
 
 qrc_qmake_qmake_qm_files.o: qrc_qmake_qmake_qm_files.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_qmake_qmake_qm_files.o qrc_qmake_qmake_qm_files.cpp
