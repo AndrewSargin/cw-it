@@ -55,50 +55,51 @@ void TabPage::on_tableWidget_cellChanged(int row, int column)
             item->setText(QString::fromStdString(currentLine.at("Cost")));
         }
     }
-    else if (column == 10)
+    if (column == 10)
     {
 
         std::string dateStr = item->text().toStdString();
-        std::string ddStr;
-        std::string mmStr;
-        std::string yyyyStr;
-        try
+        std::string writeDate;
+        std::string ddStr, mmStr, yyyyStr;
+        int ddNum, mmNum, yyyyNum;
+
+        if (dateStr.length() != 8 && dateStr.length() != 10)
         {
-            float dateFloat = std::stof(dateStr);
-            int ddNum = dateFloat / 1000000;
-            if (ddNum < 1 || ddNum > 31)
-                throw;
-            int mmNum = ((int) dateFloat % 1000000) / 10000;
-            if (mmNum < 1 || mmNum > 12)
-                throw;
-            int yyyyNum = (int) dateFloat % 10000;
-            if(yyyyNum < 1990 || yyyyNum > 2050) // по возможности сделать, чтобы
+            item->setText(QString::fromStdString(currentLine.at("DateOfPurchase")));
+            return;
+        }
+        else {
+            if (dateStr.length() == 8)
+            {
+                ddStr = dateStr.substr(0, 2);
+                ddNum = std::stoi(ddStr);
+                mmStr = dateStr.substr(2, 2);
+                mmNum = std::stoi(mmStr);
+                yyyyStr = dateStr.substr(4, 4);
+                yyyyNum = std::stoi(yyyyStr);
+            }
+            else
+            {
+                ddStr = dateStr.substr(0, 2);
+                ddNum = std::stoi(ddStr);
+                mmStr = dateStr.substr(3, 2);
+                mmNum = std::stoi(mmStr);
+                yyyyStr = dateStr.substr(6, 4);
+                yyyyNum = std::stoi(yyyyStr);
+            }
+
+            if (ddNum < 1 || ddNum > 31 || mmNum < 1 || mmNum > 12 ||
+                    yyyyNum < 1990 || yyyyNum > 2050) // по возможности сделать, чтобы
                 //сравнивалось с нынешним годом
-                throw;
-            dateStr = std::to_string(ddNum) + "." + std::to_string(mmNum) + "." + std::to_string(yyyyNum);
-            currentLine.at("DateOfPurchase") = dateStr;
-            item->setText(QString::fromStdString(dateStr));
-            //у int нет 0 впереди, поэтому даже с нормальными датами может выскочить ошибка
-            //возможно, стоит отказаться от идеи ввода даты без точек
-        }
-        catch(...)
-        {
-            try
             {
-                //перевести дату с точками
-
-            }
-
-            catch(...)
-            {
-                //не получилось ни с числом, ни с строкой
-
+                item->setText(QString::fromStdString(currentLine.at("DateOfPurchase")));
+                return;
             }
         }
 
-
+        writeDate = ddStr + "." + mmStr + "." + yyyyStr;
+        item->setText(QString::fromStdString(writeDate));
     }
-
 
     currentLine.at(entryProps[column]) = item->text().toStdString();
 }
