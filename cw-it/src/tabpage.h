@@ -19,6 +19,14 @@ public:
 private slots:
     void on_tableWidget_cellChanged(int row, int column);
 
+    void on_tableWidget_customContextMenuRequested(const QPoint &pos);
+
+    void on_addAfter_triggered();
+
+    void on_addBefore_triggered();
+
+    void on_deleteEntry_triggered();
+
 private:
 
     Ui::TabPage *ui;

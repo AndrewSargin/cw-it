@@ -37,10 +37,9 @@ void MainWindow::on_action_triggered()
     OpenedFile *file = new OpenedFile;
     if(fileHandler.open(this, file))
     {
-        QAction *Action = new QAction;
-        QString actionName = QString::fromStdString(fileHandler.getFileName());
-        Action->setText(actionName);
-        ui->tabWidget->addTab(new TabPage(nullptr, file), actionName);
+
+        QString fileName = QString::fromStdString(fileHandler.getFileName());
+        ui->tabWidget->addTab(new TabPage(nullptr, file), fileName);
         ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
 
     }

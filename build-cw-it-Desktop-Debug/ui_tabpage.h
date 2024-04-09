@@ -27,9 +27,11 @@ public:
         if (TabPage->objectName().isEmpty())
             TabPage->setObjectName(QString::fromUtf8("TabPage"));
         TabPage->resize(663, 422);
+        TabPage->setContextMenuPolicy(Qt::DefaultContextMenu);
         tableWidget = new QTableWidget(TabPage);
         tableWidget->setObjectName(QString::fromUtf8("tableWidget"));
         tableWidget->setGeometry(QRect(0, 0, 661, 391));
+        tableWidget->setContextMenuPolicy(Qt::CustomContextMenu);
 
         retranslateUi(TabPage);
 

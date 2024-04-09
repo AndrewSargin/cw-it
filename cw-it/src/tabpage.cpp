@@ -2,6 +2,7 @@
 #include "ui_tabpage.h"
 #include "constants.h"
 #include "validator.h"
+#include <qmenu.h>
 
 TabPage::TabPage(QWidget *parent, OpenedFile *file) :
     QWidget(parent),
@@ -31,6 +32,9 @@ TabPage::TabPage(QWidget *parent, OpenedFile *file) :
     }
     currentFile = file;
     ui->tableWidget->blockSignals(0);
+
+    connect(ui->tableWidget, SIGNAL(customContextMenuRequested(QPoint)), ui->tableWidget, SLOT(slotCustomMenuRequested(QPoint)));
+
 }
 
 TabPage::~TabPage()
@@ -56,3 +60,37 @@ void TabPage::on_tableWidget_cellChanged(int row, int column)
     currentLine->at(entryProps[column]) = item->text().toStdString();
 }
 
+
+void TabPage::on_tableWidget_customContextMenuRequested(const QPoint &pos)
+{
+    QMenu * menu = new QMenu(this);
+
+    QAction *addAfter = new QAction(tr("Добавить после"), this);
+    QAction *addBefore = new QAction(tr("Добавить до"), this);
+    QAction *deleteEntry = new QAction(tr("Удалить запись"), this);
+
+    menu->addAction(addAfter);
+    menu->addAction(addBefore);
+    menu->addAction(deleteEntry);
+
+    menu->popup(ui->tableWidget->viewport()->mapToGlobal(pos));
+
+    connect(addAfter, SIGNAL(triggered()), this, SLOT(on_addAfter_triggered()));
+    connect(addBefore, SIGNAL(triggered()), this, SLOT(on_addBefore_triggered()));
+    connect(deleteEntry, SIGNAL(triggered()), this, SLOT(on_deleteEntry_triggered()));
+}
+
+void TabPage::on_addAfter_triggered()
+{
+
+}
+
+void TabPage::on_addBefore_triggered()
+{
+
+}
+
+void TabPage::on_deleteEntry_triggered()
+{
+
+}
