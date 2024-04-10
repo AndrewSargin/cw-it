@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <cstdio>
 #include "openedfile.h"
+#include <QTabWidget>
 
 class FileHandler
 {
@@ -11,10 +12,11 @@ class FileHandler
 
         FileHandler();
 
-        int open(QWidget *parent, OpenedFile *file);
+        int open(QWidget *parent, OpenedFile *file, QTabWidget *tabWidget);
         int close(int index);
         void save(int index);
         std::string getFileName();
+        bool isFileChanged(int index);
 
     private:
 

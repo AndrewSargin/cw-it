@@ -1,3 +1,6 @@
 #include "openedfile.h"
 
-OpenedFile::OpenedFile(){};
+OpenedFile::OpenedFile()
+{
+
+}

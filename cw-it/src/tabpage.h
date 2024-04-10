@@ -27,6 +27,8 @@ private slots:
 
     void on_deleteEntry_triggered();
 
+    void NewRow(int row);
+
 private:
 
     Ui::TabPage *ui;

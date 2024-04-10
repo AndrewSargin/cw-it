@@ -1,5 +1,6 @@
 #include "validator.h"
 #include <iostream>
+#include <ctime>
 
 Validator::Validator()
 {
@@ -10,7 +11,7 @@ void Validator::PriceInput(QTableWidgetItem *item, std::map<std::string, std::st
 {
     try
     {
-        float price = std::stof(item->text().toStdString());
+        std::stof(item->text().toStdString());
     }
     catch(...)
     {
@@ -51,9 +52,12 @@ void Validator::DateInput(QTableWidgetItem *item, std::map<std::string, std::str
             yyyyNum = std::stoi(yyyyStr);
         }
 
+        time_t now = time(0);
+        tm* ltm = localtime(&now);
+        int currentYear = 1900 + ltm->tm_year;
+
         if (ddNum < 1 || ddNum > 31 || mmNum < 1 || mmNum > 12 ||
-                yyyyNum < 1990 || yyyyNum > 2050) // по возможности сделать, чтобы
-            //сравнивалось с нынешним годом
+                yyyyNum < 1990 || yyyyNum > currentYear)
         {
             item->setText(QString::fromStdString(currentLine->at("DateOfPurchase")));
             return;

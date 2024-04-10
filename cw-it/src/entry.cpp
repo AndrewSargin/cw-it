@@ -15,5 +15,11 @@ Entry::Entry(std::string line)
     }
 }
 
-Entry::Entry() {};
+Entry::Entry()
+{
+    for(int i = 0; i < 11; i++)
+    {
+        properties.insert({entryProps[i], ""});
+    }
+}
 

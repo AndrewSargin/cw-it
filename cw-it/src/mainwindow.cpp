@@ -7,6 +7,7 @@
 #include <iostream>
 #include <stdio.h>
 #include "filehandler.h"
+#include "askforsave.h"
 
 FileHandler fileHandler = FileHandler();
 
@@ -26,7 +27,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_action_4_triggered()
 {
-    aboutWindow = new About(this);
+    About *aboutWindow = new About(this);
     aboutWindow->show();
 }
 
@@ -35,20 +36,23 @@ void MainWindow::on_action_triggered()
 {
 
     OpenedFile *file = new OpenedFile;
-    if(fileHandler.open(this, file))
+    if(fileHandler.open(this, file, ui->tabWidget))
     {
-
         QString fileName = QString::fromStdString(fileHandler.getFileName());
         ui->tabWidget->addTab(new TabPage(nullptr, file), fileName);
         ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
-
     }
-
 }
 
 
 void MainWindow::on_tabWidget_tabCloseRequested(int index)
 {
+    if (fileHandler.isFileChanged(index) == true)
+    {
+        AskForSave *saveWindow = new AskForSave(this, &fileHandler, index);
+        saveWindow->show();
+    }
+
     ui->tabWidget->removeTab(index);
     fileHandler.close(index);
 }
@@ -56,6 +60,23 @@ void MainWindow::on_tabWidget_tabCloseRequested(int index)
 
 void MainWindow::on_action_2_triggered()
 {
-    fileHandler.save(ui->tabWidget->currentIndex());
+    if(ui->tabWidget->count() != 0)
+        fileHandler.save(ui->tabWidget->currentIndex());
+}
+
+void MainWindow::on_action_3_triggered()
+{
+    int index = ui->tabWidget->currentIndex();
+    if (index != -1)
+    {
+        if (fileHandler.isFileChanged(index) == true)
+        {
+            AskForSave *saveWindow = new AskForSave(this, &fileHandler, index);
+            saveWindow->show();
+        }
+
+        ui->tabWidget->removeTab(index);
+        fileHandler.close(index);
+    }
 }
 

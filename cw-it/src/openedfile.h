@@ -13,6 +13,7 @@ public:
     std::string filePath;
     std::string fileName;
     std::map<int, Entry> data;
+    bool isChanged = false;
 };
 
 #endif // OPENEDFILE_H

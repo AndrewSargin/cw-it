@@ -7,16 +7,29 @@
 #include <QFileDialog>
 #include <QObject>
 #include "entry.h"
+#include "filereadingerror.h"
 
 FileHandler::FileHandler()
 {
 
 }
 
-int FileHandler::open(QWidget *parent, OpenedFile *file)
+int FileHandler::open(QWidget *parent, OpenedFile *file, QTabWidget *tabWidget)
 {
     QString fileName = QFileDialog::getOpenFileName(parent, QObject::tr("Open File"), "/home");
     std::string filePath = fileName.toUtf8().constData();
+
+    if(filePath == "")
+        return 0;
+
+    for (int i = 0; i < (int) files_vector.size(); i++)
+    {
+        if (files_vector[i]->filePath == filePath)
+        {
+            tabWidget->setCurrentIndex(i);
+            return 0;
+        }
+    }
 
     std::ifstream openedFile(filePath);
     std::string fileCheck;
@@ -30,9 +43,8 @@ int FileHandler::open(QWidget *parent, OpenedFile *file)
     if(fileCheck.compare("===cw-it===") != 0)
     {
         openedFile.close();
-        QDialog *fileErrorWindow = new QDialog();
-        fileErrorWindow->setWindowTitle(QObject::tr("Error while reading file"));
-        fileErrorWindow->show();
+        FileReadingError *errWindow = new FileReadingError(parent);
+        errWindow->show();
         return 0;
     }
 
@@ -58,7 +70,7 @@ int FileHandler::open(QWidget *parent, OpenedFile *file)
 int FileHandler::close(int index)
 {
 
-     files_vector.erase(files_vector.begin()+index);
+    files_vector.erase(files_vector.begin()+index);
     return 1;
 }
 
@@ -79,6 +91,7 @@ void FileHandler::save(int index)
         }
     }
 
+    dataToSave->isChanged = false;
     fileToSave.close();
 
 }
@@ -86,4 +99,9 @@ void FileHandler::save(int index)
 std::string FileHandler::getFileName()
 {
     return files_vector.back()->fileName;
+}
+
+bool FileHandler::isFileChanged(int index)
+{
+    return files_vector[index]->isChanged;
 }

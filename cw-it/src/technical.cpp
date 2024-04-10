@@ -10,8 +10,9 @@ vector<string> SplitLine (string line, string delimiter)
                if (line[i + j] != delimiter[j]) flag = false;
            }
            if (flag) {
+               vector.push_back(token);
+
                if (token.size() > 0) {
-                   vector.push_back(token);
                    token = "";
                    i += delimiter.size() - 1;
                }

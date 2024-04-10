@@ -10,8 +10,10 @@ CONFIG += c++11
 
 SOURCES += \
     about.cpp \
+    askforsave.cpp \
     entry.cpp \
     filehandler.cpp \
+    filereadingerror.cpp \
     main.cpp \
     mainwindow.cpp \
     openedfile.cpp \
@@ -21,9 +23,11 @@ SOURCES += \
 
 HEADERS += \
     about.h \
+    askforsave.h \
     constants.h \
     entry.h \
     filehandler.h \
+    filereadingerror.h \
     mainwindow.h \
     openedfile.h \
     tabpage.h \
@@ -32,6 +36,8 @@ HEADERS += \
 
 FORMS += \
     about.ui \
+    askforsave.ui \
+    filereadingerror.ui \
     mainwindow.ui \
     tabpage.ui
 

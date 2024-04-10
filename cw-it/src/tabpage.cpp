@@ -3,6 +3,7 @@
 #include "constants.h"
 #include "validator.h"
 #include <qmenu.h>
+#include "entry.h"
 
 TabPage::TabPage(QWidget *parent, OpenedFile *file) :
     QWidget(parent),
@@ -49,6 +50,8 @@ void TabPage::on_tableWidget_cellChanged(int row, int column)
     int EntryId = std::stoi(ui->tableWidget->item(row, 0)->text().toStdString());
     std::map<std::string, std::string> *currentLine = &currentFile->data.at(EntryId).properties;
 
+    currentFile->isChanged = true;
+
     switch(column)
     {
     case 9: validate.PriceInput(item, currentLine);
@@ -78,19 +81,69 @@ void TabPage::on_tableWidget_customContextMenuRequested(const QPoint &pos)
     connect(addAfter, SIGNAL(triggered()), this, SLOT(on_addAfter_triggered()));
     connect(addBefore, SIGNAL(triggered()), this, SLOT(on_addBefore_triggered()));
     connect(deleteEntry, SIGNAL(triggered()), this, SLOT(on_deleteEntry_triggered()));
+
+    if (ui->tableWidget->selectedItems().size() > 1)
+    {
+        addAfter->setEnabled(false);
+        addBefore->setEnabled(false);
+    }
+    else
+    {
+        addAfter->setEnabled(true);
+        addBefore->setEnabled(true);
+    }
 }
 
 void TabPage::on_addAfter_triggered()
 {
+    int row = ui->tableWidget->currentRow() + 1;
 
+    NewRow(row);
 }
 
 void TabPage::on_addBefore_triggered()
 {
+    int row = ui->tableWidget->currentRow() - 1;
 
+    NewRow(row);
 }
 
 void TabPage::on_deleteEntry_triggered()
 {
+    int row = ui->tableWidget->currentRow();
+    int id = std::stoi(ui->tableWidget->item(row, 0)->text().toStdString());
+    ui->tableWidget->removeRow(row);
+    currentFile->data.erase(id);
+}
 
+void TabPage::NewRow(int row)
+{
+    ui->tableWidget->insertRow(row);
+
+    Entry newEntry = Entry();
+
+    bool found = false;
+    int key = 1;
+    auto iterator = currentFile->data.begin();
+    while(!found)
+    {
+        if (key == iterator->first)
+        {
+            key++;
+            iterator++;
+        }
+        else found = true;
+    }
+
+    newEntry.properties["Id"] = std::to_string(key);
+
+    currentFile->data[std::stoi(newEntry.properties["Id"])] = newEntry;
+
+    for(int j = 0; j < 11; j++)
+    {
+        QTableWidgetItem *item = new QTableWidgetItem(QString::fromStdString(currentFile->data.at(key).properties.at(entryProps[j])));
+        ui->tableWidget->setItem(row, j, item);
+        if (j == 0)
+            item->setFlags(item->flags() ^ Qt::ItemIsEditable);
+    }
 }
