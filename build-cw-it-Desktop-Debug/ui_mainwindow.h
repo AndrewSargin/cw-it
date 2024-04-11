@@ -13,6 +13,7 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
@@ -30,6 +31,7 @@ public:
     QAction *action_3;
     QAction *action_4;
     QWidget *centralwidget;
+    QHBoxLayout *horizontalLayout;
     QTabWidget *tabWidget;
     QMenuBar *menubar;
     QMenu *menu;
@@ -40,7 +42,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(800, 600);
+        MainWindow->resize(1400, 1000);
         MainWindow->setLocale(QLocale(QLocale::Russian, QLocale::Russia));
         action = new QAction(MainWindow);
         action->setObjectName(QString::fromUtf8("action"));
@@ -52,15 +54,22 @@ public:
         action_4->setObjectName(QString::fromUtf8("action_4"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
+        centralwidget->setEnabled(true);
+        centralwidget->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
+        horizontalLayout = new QHBoxLayout(centralwidget);
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         tabWidget = new QTabWidget(centralwidget);
         tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
-        tabWidget->setGeometry(QRect(-4, -1, 801, 561));
         tabWidget->setTabsClosable(true);
         tabWidget->setMovable(true);
+
+        horizontalLayout->addWidget(tabWidget);
+
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 800, 22));
+        menubar->setGeometry(QRect(0, 0, 1400, 22));
+        menubar->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
         menu = new QMenu(menubar);
         menu->setObjectName(QString::fromUtf8("menu"));
         menu_2 = new QMenu(menubar);
@@ -68,6 +77,7 @@ public:
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
+        statusbar->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
         MainWindow->setStatusBar(statusbar);
 
         menubar->addAction(menu->menuAction());

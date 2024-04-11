@@ -31,6 +31,8 @@ TabPage::TabPage(QWidget *parent, OpenedFile *file) :
         }
         iterator++;
     }
+
+    ui->tableWidget->resizeColumnsToContents();
     currentFile = file;
     ui->tableWidget->blockSignals(0);
 

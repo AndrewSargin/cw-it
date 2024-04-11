@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QTableWidget>
 #include <QtWidgets/QWidget>
@@ -20,18 +21,27 @@ QT_BEGIN_NAMESPACE
 class Ui_TabPage
 {
 public:
+    QHBoxLayout *horizontalLayout;
     QTableWidget *tableWidget;
 
     void setupUi(QWidget *TabPage)
     {
         if (TabPage->objectName().isEmpty())
             TabPage->setObjectName(QString::fromUtf8("TabPage"));
-        TabPage->resize(663, 422);
+        TabPage->resize(1400, 1000);
         TabPage->setContextMenuPolicy(Qt::DefaultContextMenu);
+        horizontalLayout = new QHBoxLayout(TabPage);
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         tableWidget = new QTableWidget(TabPage);
         tableWidget->setObjectName(QString::fromUtf8("tableWidget"));
-        tableWidget->setGeometry(QRect(0, 0, 661, 391));
         tableWidget->setContextMenuPolicy(Qt::CustomContextMenu);
+        tableWidget->horizontalHeader()->setCascadingSectionResizes(false);
+        tableWidget->horizontalHeader()->setDefaultSectionSize(100);
+        tableWidget->horizontalHeader()->setStretchLastSection(true);
+        tableWidget->verticalHeader()->setStretchLastSection(false);
+
+        horizontalLayout->addWidget(tableWidget);
+
 
         retranslateUi(TabPage);
 
