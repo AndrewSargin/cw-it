@@ -44,7 +44,7 @@ public:
 
     void retranslateUi(QDialog *About)
     {
-        About->setWindowTitle(QCoreApplication::translate("About", "\320\236\320\261 \320\260\320\262\321\202\320\276\321\200\320\265", nullptr));
+        About->setWindowTitle(QCoreApplication::translate("About", "About ", nullptr));
         textBrowser->setHtml(QCoreApplication::translate("About", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"

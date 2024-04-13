@@ -70,9 +70,9 @@ void TabPage::on_tableWidget_customContextMenuRequested(const QPoint &pos)
 {
     QMenu * menu = new QMenu(this);
 
-    QAction *addAfter = new QAction(tr("Добавить после"), this);
-    QAction *addBefore = new QAction(tr("Добавить до"), this);
-    QAction *deleteEntry = new QAction(tr("Удалить запись"), this);
+    QAction *addAfter = new QAction(tr("Add after"), this);
+    QAction *addBefore = new QAction(tr("Add before"), this);
+    QAction *deleteEntry = new QAction(tr("Delete row"), this);
 
     menu->addAction(addAfter);
     menu->addAction(addBefore);

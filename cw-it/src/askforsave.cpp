@@ -12,6 +12,7 @@ AskForSave::AskForSave(QWidget *parent, FileHandler *fileHandle, int ind) :
     std::string text = "File \"" + fileHandle->getFileName() + "\" was changed. Do you want to save it before closing?";
     ui->setupUi(this);
     ui->textBrowser->setText(QString::fromStdString(text));
+    this->setStyleSheet("QDialog {background-color:rgb(255,255,255);} QTextBrowser {border: 0px}");
 }
 
 AskForSave::~AskForSave()

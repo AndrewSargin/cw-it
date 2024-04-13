@@ -11,10 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
-  </property>
-  <property name="locale">
-   <locale language="Russian" country="Russia"/>
+   <string>cw-it Sargin Andrew</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="enabled">
@@ -53,7 +50,7 @@
    </property>
    <widget class="QMenu" name="menu">
     <property name="title">
-     <string>Файл</string>
+     <string>File</string>
     </property>
     <addaction name="action"/>
     <addaction name="action_2"/>
@@ -61,8 +58,18 @@
    </widget>
    <widget class="QMenu" name="menu_2">
     <property name="title">
-     <string>Дополнительно</string>
+     <string>Other</string>
     </property>
+    <widget class="QMenu" name="menuChange_Language">
+     <property name="title">
+      <string>Change Language</string>
+     </property>
+     <addaction name="actionEnglish"/>
+     <addaction name="actionRussian"/>
+    </widget>
+    <addaction name="separator"/>
+    <addaction name="menuChange_Language"/>
+    <addaction name="separator"/>
     <addaction name="action_4"/>
    </widget>
    <addaction name="menu"/>
@@ -75,22 +82,32 @@
   </widget>
   <action name="action">
    <property name="text">
-    <string>Открыть</string>
+    <string>Open</string>
    </property>
   </action>
   <action name="action_2">
    <property name="text">
-    <string>Сохранить</string>
+    <string>Save</string>
    </property>
   </action>
   <action name="action_3">
    <property name="text">
-    <string>Закрыть</string>
+    <string>Close</string>
    </property>
   </action>
   <action name="action_4">
    <property name="text">
-    <string>Об авторе</string>
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionEnglish">
+   <property name="text">
+    <string>English (EN)</string>
+   </property>
+  </action>
+  <action name="actionRussian">
+   <property name="text">
+    <string>Русский (RU)</string>
    </property>
   </action>
  </widget>

@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QEvent>
+#include <QTranslator>
 #include "about.h"
 
 QT_BEGIN_NAMESPACE
@@ -27,8 +29,13 @@ private slots:
 
     void on_action_3_triggered();
 
+    void on_actionEnglish_triggered();
+
 private:
     Ui::MainWindow *ui;
     About *aboutWindow;
+    QTranslator languageTranslator;
+
+
 };
 #endif // MAINWINDOW_H

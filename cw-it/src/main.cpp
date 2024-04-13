@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
     QTranslator translator;
-    const QStringList uiLanguages = QLocale::system().uiLanguages();
+    const QStringList uiLanguages = {"ru-RU", "en-US" };
     for (const QString &locale : uiLanguages) {
         const QString baseName = "cw-it_" + QLocale(locale).name();
         if (translator.load(":/i18n/" + baseName)) {

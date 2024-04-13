@@ -47,7 +47,7 @@ public:
 
     void retranslateUi(QDialog *AskForSave)
     {
-        AskForSave->setWindowTitle(QCoreApplication::translate("AskForSave", "Dialog", nullptr));
+        AskForSave->setWindowTitle(QCoreApplication::translate("AskForSave", "Save?", nullptr));
     } // retranslateUi
 
 };

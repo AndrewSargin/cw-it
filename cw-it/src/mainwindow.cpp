@@ -80,3 +80,9 @@ void MainWindow::on_action_3_triggered()
     }
 }
 
+
+void MainWindow::on_actionEnglish_triggered()
+{
+
+}
+

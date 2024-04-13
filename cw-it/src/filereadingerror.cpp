@@ -6,6 +6,7 @@ FileReadingError::FileReadingError(QWidget *parent) :
     ui(new Ui::FileReadingError)
 {
     ui->setupUi(this);
+    this->setStyleSheet("QDialog {background-color:rgb(255,255,255);} QTextBrowser {border: 0px}");
 }
 
 FileReadingError::~FileReadingError()

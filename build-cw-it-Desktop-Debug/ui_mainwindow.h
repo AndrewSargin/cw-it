@@ -30,12 +30,15 @@ public:
     QAction *action_2;
     QAction *action_3;
     QAction *action_4;
+    QAction *actionEnglish;
+    QAction *actionRussian;
     QWidget *centralwidget;
     QHBoxLayout *horizontalLayout;
     QTabWidget *tabWidget;
     QMenuBar *menubar;
     QMenu *menu;
     QMenu *menu_2;
+    QMenu *menuChange_Language;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -43,7 +46,6 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->resize(1400, 1000);
-        MainWindow->setLocale(QLocale(QLocale::Russian, QLocale::Russia));
         action = new QAction(MainWindow);
         action->setObjectName(QString::fromUtf8("action"));
         action_2 = new QAction(MainWindow);
@@ -52,6 +54,10 @@ public:
         action_3->setObjectName(QString::fromUtf8("action_3"));
         action_4 = new QAction(MainWindow);
         action_4->setObjectName(QString::fromUtf8("action_4"));
+        actionEnglish = new QAction(MainWindow);
+        actionEnglish->setObjectName(QString::fromUtf8("actionEnglish"));
+        actionRussian = new QAction(MainWindow);
+        actionRussian->setObjectName(QString::fromUtf8("actionRussian"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         centralwidget->setEnabled(true);
@@ -74,6 +80,8 @@ public:
         menu->setObjectName(QString::fromUtf8("menu"));
         menu_2 = new QMenu(menubar);
         menu_2->setObjectName(QString::fromUtf8("menu_2"));
+        menuChange_Language = new QMenu(menu_2);
+        menuChange_Language->setObjectName(QString::fromUtf8("menuChange_Language"));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -85,7 +93,12 @@ public:
         menu->addAction(action);
         menu->addAction(action_2);
         menu->addAction(action_3);
+        menu_2->addSeparator();
+        menu_2->addAction(menuChange_Language->menuAction());
+        menu_2->addSeparator();
         menu_2->addAction(action_4);
+        menuChange_Language->addAction(actionEnglish);
+        menuChange_Language->addAction(actionRussian);
 
         retranslateUi(MainWindow);
 
@@ -97,13 +110,16 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-        action->setText(QCoreApplication::translate("MainWindow", "\320\236\321\202\320\272\321\200\321\213\321\202\321\214", nullptr));
-        action_2->setText(QCoreApplication::translate("MainWindow", "\320\241\320\276\321\205\321\200\320\260\320\275\320\270\321\202\321\214", nullptr));
-        action_3->setText(QCoreApplication::translate("MainWindow", "\320\227\320\260\320\272\321\200\321\213\321\202\321\214", nullptr));
-        action_4->setText(QCoreApplication::translate("MainWindow", "\320\236\320\261 \320\260\320\262\321\202\320\276\321\200\320\265", nullptr));
-        menu->setTitle(QCoreApplication::translate("MainWindow", "\320\244\320\260\320\271\320\273", nullptr));
-        menu_2->setTitle(QCoreApplication::translate("MainWindow", "\320\224\320\276\320\277\320\276\320\273\320\275\320\270\321\202\320\265\320\273\321\214\320\275\320\276", nullptr));
+        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "cw-it Sargin Andrew", nullptr));
+        action->setText(QCoreApplication::translate("MainWindow", "Open", nullptr));
+        action_2->setText(QCoreApplication::translate("MainWindow", "Save", nullptr));
+        action_3->setText(QCoreApplication::translate("MainWindow", "Close", nullptr));
+        action_4->setText(QCoreApplication::translate("MainWindow", "About", nullptr));
+        actionEnglish->setText(QCoreApplication::translate("MainWindow", "English (EN)", nullptr));
+        actionRussian->setText(QCoreApplication::translate("MainWindow", "\320\240\321\203\321\201\321\201\320\272\320\270\320\271 (RU)", nullptr));
+        menu->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
+        menu_2->setTitle(QCoreApplication::translate("MainWindow", "Other", nullptr));
+        menuChange_Language->setTitle(QCoreApplication::translate("MainWindow", "Change Language", nullptr));
     } // retranslateUi
 
 };
