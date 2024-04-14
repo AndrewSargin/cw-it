@@ -4,12 +4,12 @@
 <context>
     <name>About</name>
     <message>
-        <location filename="about.ui" line="14"/>
+        <location filename="../about.ui" line="14"/>
         <source>About </source>
         <translation>Об авторе </translation>
     </message>
     <message>
-        <location filename="about.ui" line="29"/>
+        <location filename="../about.ui" line="29"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -19,7 +19,7 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="about.ui" line="47"/>
+        <location filename="../about.ui" line="47"/>
         <source>Ок</source>
         <translation></translation>
     </message>
@@ -27,7 +27,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AskForSave</name>
     <message>
-        <location filename="askforsave.ui" line="14"/>
+        <location filename="../askforsave.ui" line="14"/>
         <source>Save?</source>
         <translation>Сохранить?</translation>
     </message>
@@ -35,12 +35,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>FileReadingError</name>
     <message>
-        <location filename="filereadingerror.ui" line="14"/>
+        <location filename="../filereadingerror.ui" line="14"/>
         <source>Error!</source>
         <translation>Ошибка!</translation>
     </message>
     <message>
-        <location filename="filereadingerror.ui" line="45"/>
+        <location filename="../filereadingerror.ui" line="45"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -52,53 +52,53 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="mainwindow.ui" line="14"/>
+        <location filename="../mainwindow.ui" line="14"/>
         <source>cw-it Sargin Andrew</source>
         <translation>cw-it Саргин Андрей</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="53"/>
+        <location filename="../mainwindow.ui" line="53"/>
         <source>File</source>
         <translation>Файл</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="61"/>
+        <location filename="../mainwindow.ui" line="61"/>
         <source>Other</source>
         <translation>Дополнительно</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="65"/>
+        <location filename="../mainwindow.ui" line="65"/>
         <source>Change Language</source>
         <translation>Изменить язык</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="85"/>
+        <location filename="../mainwindow.ui" line="85"/>
         <source>Open</source>
         <translation>Открыть</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="90"/>
+        <location filename="../mainwindow.ui" line="90"/>
         <source>Save</source>
         <translation>Сохранить</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="95"/>
+        <location filename="../mainwindow.ui" line="95"/>
         <source>Close</source>
         <translation>Закрыть</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="100"/>
+        <location filename="../mainwindow.ui" line="100"/>
         <source>About</source>
         <translation>Об авторе</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="105"/>
+        <location filename="../mainwindow.ui" line="105"/>
         <source>English (EN)</source>
         <oldsource>English</oldsource>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="110"/>
+        <location filename="../mainwindow.ui" line="110"/>
         <source>Русский (RU)</source>
         <translation></translation>
     </message>
@@ -106,7 +106,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>QObject</name>
     <message>
-        <location filename="filehandler.cpp" line="19"/>
+        <location filename="../filehandler.cpp" line="19"/>
         <source>Open File</source>
         <translation>Открыть файл</translation>
     </message>
@@ -114,22 +114,22 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TabPage</name>
     <message>
-        <location filename="tabpage.ui" line="17"/>
+        <location filename="../tabpage.ui" line="17"/>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="tabpage.cpp" line="73"/>
+        <location filename="../tabpage.cpp" line="73"/>
         <source>Add after</source>
         <translation>Добавить после</translation>
     </message>
     <message>
-        <location filename="tabpage.cpp" line="74"/>
+        <location filename="../tabpage.cpp" line="74"/>
         <source>Add before</source>
         <translation>Добавить до</translation>
     </message>
     <message>
-        <location filename="tabpage.cpp" line="75"/>
+        <location filename="../tabpage.cpp" line="75"/>
         <source>Delete row</source>
         <translation>Удалить строку</translation>
     </message>

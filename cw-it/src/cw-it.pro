@@ -41,8 +41,8 @@ FORMS += \
     mainwindow.ui \
     tabpage.ui
 
-TRANSLATIONS += \
-    cw-it_ru_RU.ts
+TRANSLATIONS = languages/cw-it_ru_RU.ts languages/cw-it_en_US.ts
+
 CONFIG += lrelease
 CONFIG += embed_translations
 

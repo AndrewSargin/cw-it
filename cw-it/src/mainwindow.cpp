@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include "filehandler.h"
 #include "askforsave.h"
+#include <QApplication>
 
 FileHandler fileHandler = FileHandler();
 
@@ -16,6 +17,8 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    if (languageTranslator.load(".qm/cw-it_ru_RU"))
+        qApp->installTranslator(&languageTranslator);
 
 }
 
@@ -83,6 +86,22 @@ void MainWindow::on_action_3_triggered()
 
 void MainWindow::on_actionEnglish_triggered()
 {
+    if (languageTranslator.load(".qm/cw-it_en_US"))
+        qApp->installTranslator(&languageTranslator);
 
+
+}
+
+void MainWindow::changeEvent(QEvent *event)
+{
+    if (event->type() == QEvent::LanguageChange)
+        ui->retranslateUi(this);
+}
+
+
+void MainWindow::on_actionRussian_triggered()
+{
+    if(languageTranslator.load(".qm/cw-it_ru_RU."))
+        qApp->installTranslator(&languageTranslator);
 }
 

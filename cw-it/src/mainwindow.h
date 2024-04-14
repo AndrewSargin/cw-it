@@ -18,6 +18,9 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+protected:
+    void changeEvent(QEvent * event) override;
+
 private slots:
     void on_action_4_triggered();
 
@@ -31,9 +34,10 @@ private slots:
 
     void on_actionEnglish_triggered();
 
+    void on_actionRussian_triggered();
+
 private:
     Ui::MainWindow *ui;
-    About *aboutWindow;
     QTranslator languageTranslator;
 
 
