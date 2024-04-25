@@ -13,6 +13,7 @@ TabPage::TabPage(QWidget *parent, OpenedFile *file) :
     ui->setupUi(this);
     for(int i  = 0; i < (int) columnNames.size(); i++)
     {
+        QString name = QObject::tr(columnNames[i].c_str());
         labels.append(QString::fromStdString(columnNames[i]));
     }
     ui->tableWidget->setColumnCount(11);
@@ -24,7 +25,12 @@ TabPage::TabPage(QWidget *parent, OpenedFile *file) :
     {
         for(int j = 0; j < 11; j++)
         {
-            QTableWidgetItem *item = new QTableWidgetItem(QString::fromStdString(file->data.at(iterator->first).properties.at(entryProps[j])));
+            QTableWidgetItem *item = new QTableWidgetItem();
+
+            if(j == 0 || j == 9)
+                item->setData(Qt::EditRole, std::stoi(file->data.at(iterator->first).properties.at(entryProps[j])));
+            else item->setData(Qt::EditRole, QString::fromStdString(file->data.at(iterator->first).properties.at(entryProps[j])));
+
             ui->tableWidget->setItem(i, j, item);
             if (j == 0)
                 item->setFlags(item->flags() ^ Qt::ItemIsEditable);
@@ -35,6 +41,7 @@ TabPage::TabPage(QWidget *parent, OpenedFile *file) :
     ui->tableWidget->resizeColumnsToContents();
     currentFile = file;
     ui->tableWidget->blockSignals(0);
+    ui->tableWidget->setSortingEnabled(true);
 
     connect(ui->tableWidget, SIGNAL(customContextMenuRequested(QPoint)), ui->tableWidget, SLOT(slotCustomMenuRequested(QPoint)));
 
