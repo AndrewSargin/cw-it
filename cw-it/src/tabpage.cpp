@@ -33,7 +33,7 @@ TabPage::TabPage(QWidget *parent, OpenedFile *file) :
 
             ui->tableWidget->setItem(i, j, item);
             if (j == 0)
-                item->setFlags(item->flags() ^ Qt::ItemIsEditable);
+                item->setFlags(Qt::ItemIsEnabled);
         }
         iterator++;
     }
@@ -54,6 +54,14 @@ TabPage::~TabPage()
 
 void TabPage::on_tableWidget_cellChanged(int row, int column)
 {
+    //Почему-то при DragAndDrop в колонку с идентификатором
+    //создается новая строчка, хотя вообще ничего не должно происходить,
+    //поэтому просто удаляю новую строку
+    if (column == 0)
+    {
+        ui->tableWidget->removeRow(row);
+        return;
+    }
     QTableWidgetItem *item = ui->tableWidget->item(row, column);
     Validator validate = Validator();
     int EntryId = std::stoi(ui->tableWidget->item(row, 0)->text().toStdString());
@@ -153,6 +161,6 @@ void TabPage::NewRow(int row)
         QTableWidgetItem *item = new QTableWidgetItem(QString::fromStdString(currentFile->data.at(key).properties.at(entryProps[j])));
         ui->tableWidget->setItem(row, j, item);
         if (j == 0)
-            item->setFlags(item->flags() ^ Qt::ItemIsEditable);
+            item->setFlags(Qt::ItemIsEnabled);
     }
 }

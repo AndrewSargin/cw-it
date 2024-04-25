@@ -35,6 +35,8 @@ public:
         tableWidget = new QTableWidget(TabPage);
         tableWidget->setObjectName(QString::fromUtf8("tableWidget"));
         tableWidget->setContextMenuPolicy(Qt::CustomContextMenu);
+        tableWidget->setDragDropMode(QAbstractItemView::DragDrop);
+        tableWidget->setDefaultDropAction(Qt::CopyAction);
         tableWidget->horizontalHeader()->setCascadingSectionResizes(false);
         tableWidget->horizontalHeader()->setDefaultSectionSize(100);
         tableWidget->horizontalHeader()->setStretchLastSection(true);
