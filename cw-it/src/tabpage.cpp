@@ -38,6 +38,24 @@ TabPage::TabPage(QWidget *parent, OpenedFile *file) :
         iterator++;
     }
 
+    if (file->fileName == "Untitled")
+    {
+
+        for(int j = 0; j < 11; j++)
+        {
+            QTableWidgetItem *item = new QTableWidgetItem();
+
+            if(j == 0 || j == 9)
+                item->setData(Qt::EditRole, 1);
+            else item->setData(Qt::EditRole, QString(""));
+
+            ui->tableWidget->setItem(0, j, item);
+            if (j == 0)
+                item->setFlags(Qt::ItemIsEnabled);
+        }
+    }
+
+
     ui->tableWidget->resizeColumnsToContents();
     currentFile = file;
     ui->tableWidget->blockSignals(0);
@@ -115,12 +133,16 @@ void TabPage::on_addAfter_triggered()
 {
     int row = ui->tableWidget->currentRow() + 1;
 
+    currentFile->isChanged = true;
+
     NewRow(row);
 }
 
 void TabPage::on_addBefore_triggered()
 {
-    int row = ui->tableWidget->currentRow() - 1;
+    int row = ui->tableWidget->currentRow();
+
+    currentFile->isChanged = true;
 
     NewRow(row);
 }
@@ -130,6 +152,7 @@ void TabPage::on_deleteEntry_triggered()
     int row = ui->tableWidget->currentRow();
     int id = std::stoi(ui->tableWidget->item(row, 0)->text().toStdString());
     ui->tableWidget->removeRow(row);
+    currentFile->isChanged = true;
     currentFile->data.erase(id);
 }
 
@@ -137,6 +160,7 @@ void TabPage::NewRow(int row)
 {
     ui->tableWidget->insertRow(row);
 
+    ui->tableWidget->blockSignals(1);
     Entry newEntry = Entry();
 
     bool found = false;
@@ -153,16 +177,23 @@ void TabPage::NewRow(int row)
     }
 
     newEntry.properties["Id"] = std::to_string(key);
+    newEntry.properties["Cost"] = "1";
 
     currentFile->data[std::stoi(newEntry.properties["Id"])] = newEntry;
 
     for(int j = 0; j < 11; j++)
     {
         QTableWidgetItem *item = new QTableWidgetItem(QString::fromStdString(currentFile->data.at(key).properties.at(entryProps[j])));
+
+        if(j == 0 || j == 9)
+            item->setData(Qt::EditRole, std::stoi(newEntry.properties.at(entryProps[j])));
+        else item->setData(Qt::EditRole, QString(""));
+
         ui->tableWidget->setItem(row, j, item);
         if (j == 0)
             item->setFlags(Qt::ItemIsEnabled);
     }
+    ui->tableWidget->blockSignals(0);
 }
 
 void TabPage::on_lineEdit_textChanged(const QString &text)

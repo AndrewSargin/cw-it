@@ -8,8 +8,7 @@
 #include <stdio.h>
 #include "filehandler.h"
 #include "askforsave.h"
-#include <QApplication>
-#include <QSettings>
+#include "chart.h"
 
 FileHandler fileHandler = FileHandler();
 
@@ -47,6 +46,9 @@ void MainWindow::on_action_triggered()
         QString fileName = QString::fromStdString(fileHandler.getFileName());
         ui->tabWidget->addTab(new TabPage(nullptr, file), fileName);
         ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
+
+        ui->actionPrint->setEnabled(1);
+        ui->actionShow->setEnabled(1);
     }
 }
 
@@ -60,6 +62,13 @@ void MainWindow::on_tabWidget_tabCloseRequested(int index)
     }
 
     ui->tabWidget->removeTab(index);
+
+    if (ui->tabWidget->count() == 0)
+    {
+        ui->actionPrint->setDisabled(1);
+        ui->actionShow->setDisabled(1);
+    }
+
     fileHandler.close(index);
 }
 
@@ -67,8 +76,15 @@ void MainWindow::on_tabWidget_tabCloseRequested(int index)
 void MainWindow::on_action_2_triggered()
 {
     if(ui->tabWidget->count() != 0)
-        fileHandler.save(ui->tabWidget->currentIndex());
+        fileHandler.save(this, ui->tabWidget->currentIndex());
 }
+
+void MainWindow::on_actionSave_As_triggered()
+{
+    if(ui->tabWidget->count() != 0)
+        fileHandler.saveAs(this, ui->tabWidget->currentIndex());
+}
+
 
 void MainWindow::on_action_3_triggered()
 {
@@ -139,4 +155,111 @@ void MainWindow::ReadSettings()
 
     qApp->installTranslator(&languageTranslator);
 
+}
+
+void MainWindow::on_actionPrint_triggered()
+{
+    QPrinter printer(QPrinter::HighResolution);
+    printer.setOutputFormat(QPrinter::PdfFormat);
+    printer.setOutputFileName(QDir::currentPath() + "/cw-it.pdf");
+
+    printer.pageLayout().setMode(QPageLayout::FullPageMode);
+    printer.setPageMargins(QMargins(0, 0, 0, 0));
+    printer.setPageOrientation(QPageLayout::Orientation::Landscape);
+
+    /// Создаем диалоговое окно печати и устанавливаем настройки принтера
+    QPrintDialog printDialog(&printer, nullptr);
+    printDialog.setWindowTitle("Print");
+    printDialog.setOptions(QAbstractPrintDialog::PrintToFile | QAbstractPrintDialog::PrintPageRange);
+
+    /// Установка стиля CSS для диалогового окна печати
+    printDialog.setStyleSheet("background-color: #272727; color: white;");
+
+    if (printDialog.exec() != QDialog::Accepted)
+    {
+        return;
+    }
+
+    QString htmlTable;
+    htmlTable = "<table border=1 cellspacing=1>\n"
+                "<caption>Учет вычислительной техники на балансе строительной компании</caption>\n"
+                "<tr>\n";
+
+    for (int i = 0; i < (int) columnNames.size(); i++)
+    {
+        htmlTable += "<th>";
+        htmlTable += columnNames[i].c_str();
+        htmlTable += "</th>\n";
+    }
+
+    htmlTable += "</tr>\n";
+
+    std::map<int, Entry> data = fileHandler.getFileData(ui->tabWidget->currentIndex());
+
+    for (auto i = data.begin(); i != data.end(); i++)
+    {
+       htmlTable += "<tr>";
+
+       for(int j = 0; j < 11; j++)
+       {
+           htmlTable += "<td>";
+           htmlTable += i->second.properties.at(entryProps[j]).c_str();
+           htmlTable += "</td>";
+       }
+
+       htmlTable += "</tr>\n";
+
+    }
+
+    htmlTable += "</table>\n<br>\n";
+
+    QTextDocument document;
+    document.setHtml(htmlTable);
+
+    QTextBrowser textBrowser;
+    textBrowser.setDocument(&document);
+
+    textBrowser.print(&printer);
+
+    return;
+}
+
+
+void MainWindow::on_actionShow_triggered()
+{
+
+    std::vector<float> price;
+    std::map<int, Entry> data = fileHandler.getFileData(ui->tabWidget->currentIndex());
+
+    for (auto i = data.begin(); i != data.end(); i++)
+    {
+        if (i->second.properties.at("Cost") != "")
+            price.push_back(std::stof(i->second.properties.at("Cost")));
+    }
+
+    if(price.size() > 0)
+    {
+        Chart *newChart = new Chart(this, price);
+        newChart->show();
+    }
+    else
+    {
+        QMessageBox::warning(this, "", tr("No data to put in chart"));
+        return;
+    }
+
+}
+
+
+void MainWindow::on_action_New_File_triggered()
+{
+    OpenedFile *file = new OpenedFile;
+    fileHandler.NewFile(file);
+
+    QString fileName = QString::fromStdString(fileHandler.getFileName());
+    ui->tabWidget->addTab(new TabPage(nullptr, file), fileName);
+    ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
+
+    ui->actionPrint->setEnabled(1);
+    ui->actionShow->setEnabled(1);
 }

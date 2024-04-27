@@ -34,6 +34,29 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>Chart</name>
+    <message>
+        <location filename="../chart.ui" line="16"/>
+        <source>MainWindow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../chart.cpp" line="18"/>
+        <source>Computer distribution chart depending on price</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../chart.cpp" line="32"/>
+        <source>Number of computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../chart.cpp" line="74"/>
+        <source>Number of computers depending on price</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>FileReadingError</name>
     <message>
         <location filename="../filereadingerror.ui" line="14"/>
@@ -67,43 +90,73 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="61"/>
+        <location filename="../mainwindow.ui" line="64"/>
         <source>Other</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="65"/>
+        <location filename="../mainwindow.ui" line="68"/>
         <source>Change Language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="85"/>
-        <source>Open</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="90"/>
-        <source>Save</source>
+        <location filename="../mainwindow.ui" line="80"/>
+        <source>Price Chart</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="95"/>
-        <source>Close</source>
+        <source>Open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="100"/>
-        <source>About</source>
+        <source>Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="105"/>
-        <source>English (EN)</source>
+        <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="110"/>
+        <source>About</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="115"/>
+        <source>English (EN)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="120"/>
         <source>Русский (RU)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="128"/>
+        <source>Print</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="136"/>
+        <source>Show</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="141"/>
+        <source>New File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="146"/>
+        <source>Save As</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="247"/>
+        <source>No data to put in chart</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -112,6 +165,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../filehandler.cpp" line="19"/>
         <source>Open File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../filehandler.cpp" line="82"/>
+        <location filename="../filehandler.cpp" line="107"/>
+        <source>Save Document</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -123,17 +182,22 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tabpage.cpp" line="80"/>
+        <location filename="../tabpage.ui" line="67"/>
+        <source> Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tabpage.cpp" line="106"/>
         <source>Add after</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tabpage.cpp" line="81"/>
+        <location filename="../tabpage.cpp" line="107"/>
         <source>Add before</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tabpage.cpp" line="82"/>
+        <location filename="../tabpage.cpp" line="108"/>
         <source>Delete row</source>
         <translation type="unfinished"></translation>
     </message>

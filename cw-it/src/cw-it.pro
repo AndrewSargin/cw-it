@@ -1,4 +1,6 @@
 QT       += core gui
+QT       += printsupport
+QT       += charts
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -11,6 +13,7 @@ CONFIG += c++11
 SOURCES += \
     about.cpp \
     askforsave.cpp \
+    chart.cpp \
     entry.cpp \
     filehandler.cpp \
     filereadingerror.cpp \
@@ -24,6 +27,7 @@ SOURCES += \
 HEADERS += \
     about.h \
     askforsave.h \
+    chart.h \
     constants.h \
     entry.h \
     filehandler.h \
@@ -37,6 +41,7 @@ HEADERS += \
 FORMS += \
     about.ui \
     askforsave.ui \
+    chart.ui \
     filereadingerror.ui \
     mainwindow.ui \
     tabpage.ui

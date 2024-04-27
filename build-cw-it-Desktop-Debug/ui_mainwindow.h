@@ -32,6 +32,10 @@ public:
     QAction *action_4;
     QAction *actionEnglish;
     QAction *actionRussian;
+    QAction *actionPrint;
+    QAction *actionShow;
+    QAction *action_New_File;
+    QAction *actionSave_As;
     QWidget *centralwidget;
     QHBoxLayout *horizontalLayout;
     QTabWidget *tabWidget;
@@ -39,6 +43,7 @@ public:
     QMenu *menu;
     QMenu *menu_2;
     QMenu *menuChange_Language;
+    QMenu *menuPrice_Diagram;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -58,6 +63,16 @@ public:
         actionEnglish->setObjectName(QString::fromUtf8("actionEnglish"));
         actionRussian = new QAction(MainWindow);
         actionRussian->setObjectName(QString::fromUtf8("actionRussian"));
+        actionPrint = new QAction(MainWindow);
+        actionPrint->setObjectName(QString::fromUtf8("actionPrint"));
+        actionPrint->setEnabled(false);
+        actionShow = new QAction(MainWindow);
+        actionShow->setObjectName(QString::fromUtf8("actionShow"));
+        actionShow->setEnabled(false);
+        action_New_File = new QAction(MainWindow);
+        action_New_File->setObjectName(QString::fromUtf8("action_New_File"));
+        actionSave_As = new QAction(MainWindow);
+        actionSave_As->setObjectName(QString::fromUtf8("actionSave_As"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         centralwidget->setEnabled(true);
@@ -82,6 +97,8 @@ public:
         menu_2->setObjectName(QString::fromUtf8("menu_2"));
         menuChange_Language = new QMenu(menu_2);
         menuChange_Language->setObjectName(QString::fromUtf8("menuChange_Language"));
+        menuPrice_Diagram = new QMenu(menubar);
+        menuPrice_Diagram->setObjectName(QString::fromUtf8("menuPrice_Diagram"));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -90,15 +107,20 @@ public:
 
         menubar->addAction(menu->menuAction());
         menubar->addAction(menu_2->menuAction());
+        menubar->addAction(menuPrice_Diagram->menuAction());
+        menu->addAction(action_New_File);
         menu->addAction(action);
         menu->addAction(action_2);
+        menu->addAction(actionSave_As);
         menu->addAction(action_3);
+        menu->addAction(actionPrint);
         menu_2->addSeparator();
         menu_2->addAction(menuChange_Language->menuAction());
         menu_2->addSeparator();
         menu_2->addAction(action_4);
         menuChange_Language->addAction(actionEnglish);
         menuChange_Language->addAction(actionRussian);
+        menuPrice_Diagram->addAction(actionShow);
 
         retranslateUi(MainWindow);
 
@@ -117,9 +139,14 @@ public:
         action_4->setText(QCoreApplication::translate("MainWindow", "About", nullptr));
         actionEnglish->setText(QCoreApplication::translate("MainWindow", "English (EN)", nullptr));
         actionRussian->setText(QCoreApplication::translate("MainWindow", "\320\240\321\203\321\201\321\201\320\272\320\270\320\271 (RU)", nullptr));
+        actionPrint->setText(QCoreApplication::translate("MainWindow", "Print", nullptr));
+        actionShow->setText(QCoreApplication::translate("MainWindow", "Show", nullptr));
+        action_New_File->setText(QCoreApplication::translate("MainWindow", "New File", nullptr));
+        actionSave_As->setText(QCoreApplication::translate("MainWindow", "Save As", nullptr));
         menu->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
         menu_2->setTitle(QCoreApplication::translate("MainWindow", "Other", nullptr));
         menuChange_Language->setTitle(QCoreApplication::translate("MainWindow", "Change Language", nullptr));
+        menuPrice_Diagram->setTitle(QCoreApplication::translate("MainWindow", "Price Chart", nullptr));
     } // retranslateUi
 
 };

@@ -53,6 +53,29 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>Chart</name>
+    <message>
+        <location filename="../chart.ui" line="16"/>
+        <source>MainWindow</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../chart.cpp" line="18"/>
+        <source>Computer distribution chart depending on price</source>
+        <translation>График распределения компьютеорв в зависимости от цены</translation>
+    </message>
+    <message>
+        <location filename="../chart.cpp" line="32"/>
+        <source>Number of computers</source>
+        <translation>Количество компьютеров</translation>
+    </message>
+    <message>
+        <location filename="../chart.cpp" line="74"/>
+        <source>Number of computers depending on price</source>
+        <translation>Количество компьютеорв в зависимости от цены</translation>
+    </message>
+</context>
+<context>
     <name>FileReadingError</name>
     <message>
         <location filename="../filereadingerror.ui" line="14"/>
@@ -66,7 +89,11 @@ p, li { white-space: pre-wrap; }
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Error while reading a file&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Ошибка при чтении файла&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -82,45 +109,75 @@ p, li { white-space: pre-wrap; }
         <translation>Файл</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="61"/>
+        <location filename="../mainwindow.ui" line="64"/>
         <source>Other</source>
         <translation>Дополнительно</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="65"/>
+        <location filename="../mainwindow.ui" line="68"/>
         <source>Change Language</source>
         <translation>Изменить язык</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="85"/>
+        <location filename="../mainwindow.ui" line="80"/>
+        <source>Price Chart</source>
+        <translation>График цены</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="95"/>
         <source>Open</source>
         <translation>Открыть</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="90"/>
+        <location filename="../mainwindow.ui" line="100"/>
         <source>Save</source>
         <translation>Сохранить</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="95"/>
+        <location filename="../mainwindow.ui" line="105"/>
         <source>Close</source>
         <translation>Закрыть</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="100"/>
+        <location filename="../mainwindow.ui" line="110"/>
         <source>About</source>
         <translation>Об авторе</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="105"/>
+        <location filename="../mainwindow.ui" line="115"/>
         <source>English (EN)</source>
         <oldsource>English</oldsource>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="110"/>
+        <location filename="../mainwindow.ui" line="120"/>
         <source>Русский (RU)</source>
         <translation></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="128"/>
+        <source>Print</source>
+        <translation>Печать</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="136"/>
+        <source>Show</source>
+        <translation>Показать</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="141"/>
+        <source>New File</source>
+        <translation>Новый файл</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="146"/>
+        <source>Save As</source>
+        <translation>Сохранить как</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="247"/>
+        <source>No data to put in chart</source>
+        <translation>Нет данных для графика</translation>
     </message>
 </context>
 <context>
@@ -129,6 +186,12 @@ p, li { white-space: pre-wrap; }
         <location filename="../filehandler.cpp" line="19"/>
         <source>Open File</source>
         <translation>Открыть файл</translation>
+    </message>
+    <message>
+        <location filename="../filehandler.cpp" line="82"/>
+        <location filename="../filehandler.cpp" line="107"/>
+        <source>Save Document</source>
+        <translation>Сохранить файл</translation>
     </message>
 </context>
 <context>
@@ -139,17 +202,22 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="../tabpage.cpp" line="80"/>
+        <location filename="../tabpage.ui" line="67"/>
+        <source> Search</source>
+        <translation>Поиск</translation>
+    </message>
+    <message>
+        <location filename="../tabpage.cpp" line="106"/>
         <source>Add after</source>
         <translation>Добавить после</translation>
     </message>
     <message>
-        <location filename="../tabpage.cpp" line="81"/>
+        <location filename="../tabpage.cpp" line="107"/>
         <source>Add before</source>
         <translation>Добавить до</translation>
     </message>
     <message>
-        <location filename="../tabpage.cpp" line="82"/>
+        <location filename="../tabpage.cpp" line="108"/>
         <source>Delete row</source>
         <translation>Удалить строку</translation>
     </message>

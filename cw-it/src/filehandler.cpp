@@ -74,9 +74,42 @@ int FileHandler::close(int index)
     return 1;
 }
 
-void FileHandler::save(int index)
+void FileHandler::save(QWidget *parent, int index)
 {
     OpenedFile *dataToSave = files_vector[index];
+    if (dataToSave->filePath == "")
+    {
+         dataToSave->filePath = QFileDialog::getSaveFileName(parent, QObject::tr("Save Document"), QDir::cleanPath("./.."), "Text Files (*.db)", nullptr).toStdString();
+    }
+    std::ofstream fileToSave(dataToSave->filePath);
+    fileToSave << "===cw-it===\n";
+    for(auto i = dataToSave->data.begin(); i != dataToSave->data.end(); i++)
+    {
+        for(int j = 0; j < 11; j++)
+        {
+            fileToSave << dataToSave->data.at(i->first).properties.at(entryProps[j]);
+            fileToSave << ";";
+
+            if(j == 10)
+                fileToSave << "\n";
+        }
+    }
+
+    dataToSave->isChanged = false;
+    fileToSave.close();
+
+}
+
+void FileHandler::saveAs(QWidget *parent, int index)
+{
+    OpenedFile *dataToSave = files_vector[index];
+
+    std::string filePath = QFileDialog::getSaveFileName(parent, QObject::tr("Save Document"), QDir::cleanPath("./.."), "Text Files (*.db)", nullptr).toStdString();
+
+    if (filePath == "")
+        return;
+    else dataToSave->filePath = filePath;
+
     std::ofstream fileToSave(dataToSave->filePath);
     fileToSave << "===cw-it===\n";
     for(auto i = dataToSave->data.begin(); i != dataToSave->data.end(); i++)
@@ -104,4 +137,23 @@ std::string FileHandler::getFileName()
 bool FileHandler::isFileChanged(int index)
 {
     return files_vector[index]->isChanged;
+}
+
+std::map<int, Entry> FileHandler::getFileData(int index)
+{
+    return files_vector[index]->data;
+}
+
+void FileHandler::NewFile(OpenedFile *file)
+{
+    file->filePath = "";
+    file->fileName = "Untitled";
+    Entry newEntry = Entry();
+
+    newEntry.properties["Id"] = "1";
+    newEntry.properties["Cost"] = "0";
+
+    file->data[1] = newEntry;
+
+    files_vector.push_back(file);
 }

@@ -52,9 +52,12 @@
     <property name="title">
      <string>File</string>
     </property>
+    <addaction name="action_New_File"/>
     <addaction name="action"/>
     <addaction name="action_2"/>
+    <addaction name="actionSave_As"/>
     <addaction name="action_3"/>
+    <addaction name="actionPrint"/>
    </widget>
    <widget class="QMenu" name="menu_2">
     <property name="title">
@@ -72,8 +75,15 @@
     <addaction name="separator"/>
     <addaction name="action_4"/>
    </widget>
+   <widget class="QMenu" name="menuPrice_Diagram">
+    <property name="title">
+     <string>Price Chart</string>
+    </property>
+    <addaction name="actionShow"/>
+   </widget>
    <addaction name="menu"/>
    <addaction name="menu_2"/>
+   <addaction name="menuPrice_Diagram"/>
   </widget>
   <widget class="QStatusBar" name="statusbar">
    <property name="locale">
@@ -108,6 +118,32 @@
   <action name="actionRussian">
    <property name="text">
     <string>Русский (RU)</string>
+   </property>
+  </action>
+  <action name="actionPrint">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Print</string>
+   </property>
+  </action>
+  <action name="actionShow">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Show</string>
+   </property>
+  </action>
+  <action name="action_New_File">
+   <property name="text">
+    <string>New File</string>
+   </property>
+  </action>
+  <action name="actionSave_As">
+   <property name="text">
+    <string>Save As</string>
    </property>
   </action>
  </widget>

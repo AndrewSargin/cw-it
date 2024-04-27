@@ -14,10 +14,10 @@ EQ            = =
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_QML_DEBUG -DQT_PRINTSUPPORT_LIB -DQT_CHARTS_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g -Wall -Wextra -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -g -std=gnu++11 -Wall -Wextra -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -I../cw-it/src -I. -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
+INCPATH       = -I../cw-it/src -I. -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtCharts -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
 QMAKE         = /usr/lib/qt5/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -40,7 +40,7 @@ DISTNAME      = cw-it1.0.0
 DISTDIR = /home/vboxuser/Documents/Uni/Kurs\ 2/build-cw-it-Desktop-Debug/.tmp/cw-it1.0.0
 LINK          = g++
 LFLAGS        = 
-LIBS          = $(SUBLIBS) /usr/lib/x86_64-linux-gnu/libQt5Widgets.so /usr/lib/x86_64-linux-gnu/libQt5Gui.so /usr/lib/x86_64-linux-gnu/libQt5Core.so -lGL -lpthread   
+LIBS          = $(SUBLIBS) /usr/lib/x86_64-linux-gnu/libQt5PrintSupport.so /usr/lib/x86_64-linux-gnu/libQt5Charts.so /usr/lib/x86_64-linux-gnu/libQt5Widgets.so /usr/lib/x86_64-linux-gnu/libQt5Gui.so /usr/lib/x86_64-linux-gnu/libQt5Core.so -lGL -lpthread   
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -54,6 +54,7 @@ OBJECTS_DIR   = ./
 
 SOURCES       = ../cw-it/src/about.cpp \
 		../cw-it/src/askforsave.cpp \
+		../cw-it/src/chart.cpp \
 		../cw-it/src/entry.cpp \
 		../cw-it/src/filehandler.cpp \
 		../cw-it/src/filereadingerror.cpp \
@@ -65,11 +66,13 @@ SOURCES       = ../cw-it/src/about.cpp \
 		../cw-it/src/validator.cpp qrc_qmake_qmake_qm_files.cpp \
 		moc_about.cpp \
 		moc_askforsave.cpp \
+		moc_chart.cpp \
 		moc_filereadingerror.cpp \
 		moc_mainwindow.cpp \
 		moc_tabpage.cpp
 OBJECTS       = about.o \
 		askforsave.o \
+		chart.o \
 		entry.o \
 		filehandler.o \
 		filereadingerror.o \
@@ -82,6 +85,7 @@ OBJECTS       = about.o \
 		qrc_qmake_qmake_qm_files.o \
 		moc_about.o \
 		moc_askforsave.o \
+		moc_chart.o \
 		moc_filereadingerror.o \
 		moc_mainwindow.o \
 		moc_tabpage.o
@@ -167,6 +171,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
 		../cw-it/cw-it/src/cw-it.pro ../cw-it/src/about.h \
 		../cw-it/src/askforsave.h \
+		../cw-it/src/chart.h \
 		../cw-it/src/constants.h \
 		../cw-it/src/entry.h \
 		../cw-it/src/filehandler.h \
@@ -177,6 +182,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		../cw-it/src/technical.h \
 		../cw-it/src/validator.h ../cw-it/src/about.cpp \
 		../cw-it/src/askforsave.cpp \
+		../cw-it/src/chart.cpp \
 		../cw-it/src/entry.cpp \
 		../cw-it/src/filehandler.cpp \
 		../cw-it/src/filereadingerror.cpp \
@@ -194,7 +200,7 @@ TARGET        = cw-it
 first: all
 ####### Build rules
 
-cw-it: ui_about.h ui_askforsave.h ui_filereadingerror.h ui_mainwindow.h ui_tabpage.h $(OBJECTS)  
+cw-it: ui_about.h ui_askforsave.h ui_chart.h ui_filereadingerror.h ui_mainwindow.h ui_tabpage.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: ../cw-it/src/cw-it.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -379,9 +385,9 @@ distdir: FORCE
 	$(COPY_FILE) --parents ../cw-it/src/languages/cw-it_ru_RU.ts ../cw-it/src/languages/cw-it_en_US.ts $(DISTDIR)/
 	$(COPY_FILE) --parents qmake_qmake_qm_files.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../cw-it/src/about.h ../cw-it/src/askforsave.h ../cw-it/src/constants.h ../cw-it/src/entry.h ../cw-it/src/filehandler.h ../cw-it/src/filereadingerror.h ../cw-it/src/mainwindow.h ../cw-it/src/openedfile.h ../cw-it/src/tabpage.h ../cw-it/src/technical.h ../cw-it/src/validator.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../cw-it/src/about.cpp ../cw-it/src/askforsave.cpp ../cw-it/src/entry.cpp ../cw-it/src/filehandler.cpp ../cw-it/src/filereadingerror.cpp ../cw-it/src/main.cpp ../cw-it/src/mainwindow.cpp ../cw-it/src/openedfile.cpp ../cw-it/src/tabpage.cpp ../cw-it/src/technical.cpp ../cw-it/src/validator.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../cw-it/src/about.ui ../cw-it/src/askforsave.ui ../cw-it/src/filereadingerror.ui ../cw-it/src/mainwindow.ui ../cw-it/src/tabpage.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../cw-it/src/about.h ../cw-it/src/askforsave.h ../cw-it/src/chart.h ../cw-it/src/constants.h ../cw-it/src/entry.h ../cw-it/src/filehandler.h ../cw-it/src/filereadingerror.h ../cw-it/src/mainwindow.h ../cw-it/src/openedfile.h ../cw-it/src/tabpage.h ../cw-it/src/technical.h ../cw-it/src/validator.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../cw-it/src/about.cpp ../cw-it/src/askforsave.cpp ../cw-it/src/chart.cpp ../cw-it/src/entry.cpp ../cw-it/src/filehandler.cpp ../cw-it/src/filereadingerror.cpp ../cw-it/src/main.cpp ../cw-it/src/mainwindow.cpp ../cw-it/src/openedfile.cpp ../cw-it/src/tabpage.cpp ../cw-it/src/technical.cpp ../cw-it/src/validator.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../cw-it/src/about.ui ../cw-it/src/askforsave.ui ../cw-it/src/chart.ui ../cw-it/src/filereadingerror.ui ../cw-it/src/mainwindow.ui ../cw-it/src/tabpage.ui $(DISTDIR)/
 	$(COPY_FILE) --parents ../cw-it/src/languages/cw-it_ru_RU.ts ../cw-it/src/languages/cw-it_en_US.ts $(DISTDIR)/
 
 
@@ -430,13 +436,13 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -std=gnu++11 -Wall -Wextra -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_about.cpp moc_askforsave.cpp moc_filereadingerror.cpp moc_mainwindow.cpp moc_tabpage.cpp
+compiler_moc_header_make_all: moc_about.cpp moc_askforsave.cpp moc_chart.cpp moc_filereadingerror.cpp moc_mainwindow.cpp moc_tabpage.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_about.cpp moc_askforsave.cpp moc_filereadingerror.cpp moc_mainwindow.cpp moc_tabpage.cpp
+	-$(DEL_FILE) moc_about.cpp moc_askforsave.cpp moc_chart.cpp moc_filereadingerror.cpp moc_mainwindow.cpp moc_tabpage.cpp
 moc_about.cpp: ../cw-it/src/about.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vboxuser/Documents/Uni/Kurs 2/build-cw-it-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vboxuser/Documents/Uni/Kurs 2/cw-it/src' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../cw-it/src/about.h -o moc_about.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vboxuser/Documents/Uni/Kurs 2/build-cw-it-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vboxuser/Documents/Uni/Kurs 2/cw-it/src' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtCharts -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../cw-it/src/about.h -o moc_about.cpp
 
 moc_askforsave.cpp: ../cw-it/src/askforsave.h \
 		../cw-it/src/filehandler.h \
@@ -444,33 +450,39 @@ moc_askforsave.cpp: ../cw-it/src/askforsave.h \
 		../cw-it/src/entry.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vboxuser/Documents/Uni/Kurs 2/build-cw-it-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vboxuser/Documents/Uni/Kurs 2/cw-it/src' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../cw-it/src/askforsave.h -o moc_askforsave.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vboxuser/Documents/Uni/Kurs 2/build-cw-it-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vboxuser/Documents/Uni/Kurs 2/cw-it/src' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtCharts -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../cw-it/src/askforsave.h -o moc_askforsave.cpp
+
+moc_chart.cpp: ../cw-it/src/chart.h \
+		moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vboxuser/Documents/Uni/Kurs 2/build-cw-it-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vboxuser/Documents/Uni/Kurs 2/cw-it/src' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtCharts -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../cw-it/src/chart.h -o moc_chart.cpp
 
 moc_filereadingerror.cpp: ../cw-it/src/filereadingerror.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vboxuser/Documents/Uni/Kurs 2/build-cw-it-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vboxuser/Documents/Uni/Kurs 2/cw-it/src' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../cw-it/src/filereadingerror.h -o moc_filereadingerror.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vboxuser/Documents/Uni/Kurs 2/build-cw-it-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vboxuser/Documents/Uni/Kurs 2/cw-it/src' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtCharts -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../cw-it/src/filereadingerror.h -o moc_filereadingerror.cpp
 
 moc_mainwindow.cpp: ../cw-it/src/mainwindow.h \
 		../cw-it/src/about.h \
+		../cw-it/src/constants.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vboxuser/Documents/Uni/Kurs 2/build-cw-it-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vboxuser/Documents/Uni/Kurs 2/cw-it/src' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../cw-it/src/mainwindow.h -o moc_mainwindow.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vboxuser/Documents/Uni/Kurs 2/build-cw-it-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vboxuser/Documents/Uni/Kurs 2/cw-it/src' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtCharts -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../cw-it/src/mainwindow.h -o moc_mainwindow.cpp
 
 moc_tabpage.cpp: ../cw-it/src/tabpage.h \
 		../cw-it/src/openedfile.h \
 		../cw-it/src/entry.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vboxuser/Documents/Uni/Kurs 2/build-cw-it-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vboxuser/Documents/Uni/Kurs 2/cw-it/src' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../cw-it/src/tabpage.h -o moc_tabpage.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vboxuser/Documents/Uni/Kurs 2/build-cw-it-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vboxuser/Documents/Uni/Kurs 2/cw-it/src' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtCharts -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../cw-it/src/tabpage.h -o moc_tabpage.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_about.h ui_askforsave.h ui_filereadingerror.h ui_mainwindow.h ui_tabpage.h
+compiler_uic_make_all: ui_about.h ui_askforsave.h ui_chart.h ui_filereadingerror.h ui_mainwindow.h ui_tabpage.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_about.h ui_askforsave.h ui_filereadingerror.h ui_mainwindow.h ui_tabpage.h
+	-$(DEL_FILE) ui_about.h ui_askforsave.h ui_chart.h ui_filereadingerror.h ui_mainwindow.h ui_tabpage.h
 ui_about.h: ../cw-it/src/about.ui \
 		/usr/lib/qt5/bin/uic
 	/usr/lib/qt5/bin/uic ../cw-it/src/about.ui -o ui_about.h
@@ -478,6 +490,10 @@ ui_about.h: ../cw-it/src/about.ui \
 ui_askforsave.h: ../cw-it/src/askforsave.ui \
 		/usr/lib/qt5/bin/uic
 	/usr/lib/qt5/bin/uic ../cw-it/src/askforsave.ui -o ui_askforsave.h
+
+ui_chart.h: ../cw-it/src/chart.ui \
+		/usr/lib/qt5/bin/uic
+	/usr/lib/qt5/bin/uic ../cw-it/src/chart.ui -o ui_chart.h
 
 ui_filereadingerror.h: ../cw-it/src/filereadingerror.ui \
 		/usr/lib/qt5/bin/uic
@@ -512,6 +528,10 @@ askforsave.o: ../cw-it/src/askforsave.cpp ../cw-it/src/askforsave.h \
 		ui_askforsave.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o askforsave.o ../cw-it/src/askforsave.cpp
 
+chart.o: ../cw-it/src/chart.cpp ../cw-it/src/chart.h \
+		ui_chart.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o chart.o ../cw-it/src/chart.cpp
+
 entry.o: ../cw-it/src/entry.cpp ../cw-it/src/entry.h \
 		../cw-it/src/technical.h \
 		../cw-it/src/constants.h
@@ -530,17 +550,20 @@ filereadingerror.o: ../cw-it/src/filereadingerror.cpp ../cw-it/src/filereadinger
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o filereadingerror.o ../cw-it/src/filereadingerror.cpp
 
 main.o: ../cw-it/src/main.cpp ../cw-it/src/mainwindow.h \
-		../cw-it/src/about.h
+		../cw-it/src/about.h \
+		../cw-it/src/constants.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../cw-it/src/main.cpp
 
 mainwindow.o: ../cw-it/src/mainwindow.cpp ../cw-it/src/mainwindow.h \
 		../cw-it/src/about.h \
+		../cw-it/src/constants.h \
 		ui_mainwindow.h \
 		../cw-it/src/tabpage.h \
 		../cw-it/src/openedfile.h \
 		../cw-it/src/entry.h \
 		../cw-it/src/filehandler.h \
-		../cw-it/src/askforsave.h
+		../cw-it/src/askforsave.h \
+		../cw-it/src/chart.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../cw-it/src/mainwindow.cpp
 
 openedfile.o: ../cw-it/src/openedfile.cpp ../cw-it/src/openedfile.h \
@@ -569,6 +592,9 @@ moc_about.o: moc_about.cpp
 
 moc_askforsave.o: moc_askforsave.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_askforsave.o moc_askforsave.cpp
+
+moc_chart.o: moc_chart.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_chart.o moc_chart.cpp
 
 moc_filereadingerror.o: moc_filereadingerror.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_filereadingerror.o moc_filereadingerror.cpp

@@ -12,11 +12,14 @@ class FileHandler
 
         FileHandler();
 
+        void NewFile(OpenedFile *file);
         int open(QWidget *parent, OpenedFile *file, QTabWidget *tabWidget);
         int close(int index);
-        void save(int index);
+        void save(QWidget *parent, int index);
+        void saveAs(QWidget *parent, int index);
         std::string getFileName();
         bool isFileChanged(int index);
+        std::map<int, Entry> getFileData(int index);
 
     private:
 

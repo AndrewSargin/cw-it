@@ -27,6 +27,7 @@ private:
     Ui::AskForSave *ui;
     FileHandler *fileHandler;
     int index;
+    QWidget *parent;
 };
 
 #endif // ASKFORSAVE_H
