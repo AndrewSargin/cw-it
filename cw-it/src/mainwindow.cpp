@@ -9,6 +9,7 @@
 #include "filehandler.h"
 #include "askforsave.h"
 #include <QApplication>
+#include <QSettings>
 
 FileHandler fileHandler = FileHandler();
 
@@ -17,13 +18,15 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    if (languageTranslator.load(".qm/cw-it_ru_RU"))
-        qApp->installTranslator(&languageTranslator);
+
+    ReadSettings();
 
 }
 
 MainWindow::~MainWindow()
 {
+    WrtieSettings();
+
     delete ui;
 }
 
@@ -81,6 +84,7 @@ void MainWindow::on_action_3_triggered()
         ui->tabWidget->removeTab(index);
         fileHandler.close(index);
     }
+    else MainWindow::close();
 }
 
 
@@ -105,3 +109,34 @@ void MainWindow::on_actionRussian_triggered()
         qApp->installTranslator(&languageTranslator);
 }
 
+void MainWindow::WrtieSettings()
+{
+    QSettings settings("cw-it", "cw-it");
+
+    settings.beginGroup("mainWindow");
+    settings.setValue("size", size());
+    settings.setValue("position", pos());
+    settings.endGroup();
+
+    settings.beginGroup("language");
+    settings.setValue("language", languageTranslator.filePath());
+    settings.endGroup();
+
+}
+
+void MainWindow::ReadSettings()
+{
+    QSettings settings("cw-it", "cw-it");
+
+    settings.beginGroup("mainWindow");
+    resize(settings.value("size", QSize(400, 400)).toSize()); // сбрасываем размеры окна
+    move(settings.value("position", QPoint(200, 200)).toPoint()); // сбрасываем крайнюю левую верхнюю точку
+    settings.endGroup();
+
+    settings.beginGroup("language");
+    languageTranslator.load(settings.value("language", QString()).toString());
+    settings.endGroup();
+
+    qApp->installTranslator(&languageTranslator);
+
+}

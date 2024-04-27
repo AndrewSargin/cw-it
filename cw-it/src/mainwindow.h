@@ -40,6 +40,9 @@ private:
     Ui::MainWindow *ui;
     QTranslator languageTranslator;
 
+    void WrtieSettings();
+
+    void ReadSettings();
 
 };
 #endif // MAINWINDOW_H
