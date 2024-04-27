@@ -11,8 +11,11 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QTableWidget>
 #include <QtWidgets/QWidget>
 
@@ -21,17 +24,20 @@ QT_BEGIN_NAMESPACE
 class Ui_TabPage
 {
 public:
-    QHBoxLayout *horizontalLayout;
+    QGridLayout *gridLayout;
     QTableWidget *tableWidget;
+    QSpacerItem *horizontalSpacer;
+    QLineEdit *lineEdit;
+    QLabel *label;
 
     void setupUi(QWidget *TabPage)
     {
         if (TabPage->objectName().isEmpty())
             TabPage->setObjectName(QString::fromUtf8("TabPage"));
-        TabPage->resize(1400, 1000);
+        TabPage->resize(1081, 767);
         TabPage->setContextMenuPolicy(Qt::DefaultContextMenu);
-        horizontalLayout = new QHBoxLayout(TabPage);
-        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        gridLayout = new QGridLayout(TabPage);
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         tableWidget = new QTableWidget(TabPage);
         tableWidget->setObjectName(QString::fromUtf8("tableWidget"));
         tableWidget->setContextMenuPolicy(Qt::CustomContextMenu);
@@ -42,7 +48,21 @@ public:
         tableWidget->horizontalHeader()->setStretchLastSection(true);
         tableWidget->verticalHeader()->setStretchLastSection(false);
 
-        horizontalLayout->addWidget(tableWidget);
+        gridLayout->addWidget(tableWidget, 3, 0, 1, 3);
+
+        horizontalSpacer = new QSpacerItem(10, 0, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer, 0, 1, 1, 1);
+
+        lineEdit = new QLineEdit(TabPage);
+        lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
+
+        gridLayout->addWidget(lineEdit, 0, 2, 1, 1);
+
+        label = new QLabel(TabPage);
+        label->setObjectName(QString::fromUtf8("label"));
+
+        gridLayout->addWidget(label, 0, 0, 1, 1);
 
 
         retranslateUi(TabPage);
@@ -53,6 +73,7 @@ public:
     void retranslateUi(QWidget *TabPage)
     {
         TabPage->setWindowTitle(QCoreApplication::translate("TabPage", "Form", nullptr));
+        label->setText(QCoreApplication::translate("TabPage", " Search", nullptr));
     } // retranslateUi
 
 };

@@ -29,6 +29,8 @@ private slots:
 
     void NewRow(int row);
 
+    void on_lineEdit_textChanged(const QString &arg1);
+
 private:
 
     Ui::TabPage *ui;

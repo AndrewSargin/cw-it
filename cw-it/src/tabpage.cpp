@@ -164,3 +164,28 @@ void TabPage::NewRow(int row)
             item->setFlags(Qt::ItemIsEnabled);
     }
 }
+
+void TabPage::on_lineEdit_textChanged(const QString &text)
+{
+    if(!text.isEmpty())
+    {
+        QList<QTableWidgetItem*> items = ui->tableWidget->findItems(text, Qt::MatchContains);
+        QList<int> rows;
+
+        for (int i = 0; i <ui->tableWidget->rowCount(); i++)
+            ui->tableWidget->hideRow(i);
+
+        for (int i = 0; i < items.length(); i++)
+            if (!rows.contains(items.at(i)->row()))
+                rows.append(items.at(i)->row());
+
+        for (int i = 0; i < rows.length(); i++)
+            ui->tableWidget->showRow(rows.at(i));
+    }
+    else
+    {
+        for (int i = 0; i <ui->tableWidget->rowCount(); i++)
+            ui->tableWidget->showRow(i);
+    }
+}
+
