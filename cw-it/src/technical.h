@@ -9,6 +9,8 @@
 using std::vector;
 using std::string;
 
+
+///Разбить строку по разделителям
 vector<string> SplitLine(string line, string delimiter);
 
 #endif // TECHNICAL_H

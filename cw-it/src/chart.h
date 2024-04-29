@@ -8,15 +8,21 @@ namespace Ui {
 class Chart;
 }
 
+
+/// \brief Класс, создающий график
 class Chart : public QMainWindow
 {
     Q_OBJECT
 
 public:
+
+    ///Конструктор
     explicit Chart(QWidget *parent = nullptr, std::vector<float> price = std::vector<float>());
 
+    ///Деструктор
     ~Chart();
 
+    ///Создание графика
     void CreateChart(std::vector<float> price);
 
 private:

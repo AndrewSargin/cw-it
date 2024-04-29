@@ -10,6 +10,8 @@
 #include "askforsave.h"
 #include "chart.h"
 
+
+///Создаем единственный на программу экземпляр класса FileHandler
 FileHandler fileHandler = FileHandler();
 
 MainWindow::MainWindow(QWidget *parent)
@@ -18,18 +20,22 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    ///Чтение настроек интерфейса
     ReadSettings();
 
 }
 
 MainWindow::~MainWindow()
 {
+
+    ///Запись настроек интерфейса
     WrtieSettings();
 
     delete ui;
 }
 
 
+///Открытие окна "Об авторе"
 void MainWindow::on_action_4_triggered()
 {
     About *aboutWindow = new About(this);
@@ -37,48 +43,83 @@ void MainWindow::on_action_4_triggered()
 }
 
 
+///Открытие существующего файла
 void MainWindow::on_action_triggered()
 {
 
     OpenedFile *file = new OpenedFile;
     if(fileHandler.open(this, file, ui->tabWidget))
     {
+        //Получение названия файла
         QString fileName = QString::fromStdString(fileHandler.getFileName());
+
+        //Создание новой страницы в виджете QTabWidget
         ui->tabWidget->addTab(new TabPage(nullptr, file), fileName);
         ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
 
+        //Включение кнопок, доступных только, когда есть файл с данными
         ui->actionPrint->setEnabled(1);
         ui->actionShow->setEnabled(1);
     }
 }
 
 
+///Создание нового файла
+void MainWindow::on_action_New_File_triggered()
+{
+    OpenedFile *file = new OpenedFile;
+    fileHandler.NewFile(file);
+
+    //Получение названия файла
+    QString fileName = QString::fromStdString(fileHandler.getFileName());
+
+    //Создание новой страницы в виджете QTabWidget
+    ui->tabWidget->addTab(new TabPage(nullptr, file), fileName);
+    ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
+
+    //Включение кнопок, доступных только, когда есть файл с данными
+    ui->actionPrint->setEnabled(1);
+    ui->actionShow->setEnabled(1);
+}
+
+
+///Закрытие страницы в виджете QTabWidget
 void MainWindow::on_tabWidget_tabCloseRequested(int index)
 {
+    //Если закрываемый файл был изменен, спрашиваем пользователя
+    //о сохранении перед выходом
     if (fileHandler.isFileChanged(index) == true)
     {
         AskForSave *saveWindow = new AskForSave(this, &fileHandler, index);
         saveWindow->show();
     }
 
+    //Удаление страницы
     ui->tabWidget->removeTab(index);
 
+    //Если страниц больше нет, то блокируем кнопки, которые не должны работать
+    //без данных
     if (ui->tabWidget->count() == 0)
     {
         ui->actionPrint->setDisabled(1);
         ui->actionShow->setDisabled(1);
     }
 
+    //Закрытие файла в классе, управляющем файлами
     fileHandler.close(index);
 }
 
 
+///Сохранение файла
 void MainWindow::on_action_2_triggered()
 {
+    //Проверка на наличие файла
     if(ui->tabWidget->count() != 0)
         fileHandler.save(this, ui->tabWidget->currentIndex());
 }
 
+
+///Функция "Сохранить как
 void MainWindow::on_actionSave_As_triggered()
 {
     if(ui->tabWidget->count() != 0)
@@ -86,9 +127,11 @@ void MainWindow::on_actionSave_As_triggered()
 }
 
 
+///Закрытие файла через меню программы
 void MainWindow::on_action_3_triggered()
 {
     int index = ui->tabWidget->currentIndex();
+    //Если есть хотя бы одна страница в QTabWidget, закрываем ее
     if (index != -1)
     {
         if (fileHandler.isFileChanged(index) == true)
@@ -100,18 +143,28 @@ void MainWindow::on_action_3_triggered()
         ui->tabWidget->removeTab(index);
         fileHandler.close(index);
     }
+    //Если в QTabWidget нет страниц, то закрываем саму программу
     else MainWindow::close();
 }
 
 
+///Перевести программу на английский язык
 void MainWindow::on_actionEnglish_triggered()
 {
     if (languageTranslator.load(".qm/cw-it_en_US"))
         qApp->installTranslator(&languageTranslator);
-
-
 }
 
+
+///Перевести программу на русский язык
+void MainWindow::on_actionRussian_triggered()
+{
+    if(languageTranslator.load(".qm/cw-it_ru_RU."))
+        qApp->installTranslator(&languageTranslator);
+}
+
+
+///Событие изменения языка
 void MainWindow::changeEvent(QEvent *event)
 {
     if (event->type() == QEvent::LanguageChange)
@@ -119,12 +172,7 @@ void MainWindow::changeEvent(QEvent *event)
 }
 
 
-void MainWindow::on_actionRussian_triggered()
-{
-    if(languageTranslator.load(".qm/cw-it_ru_RU."))
-        qApp->installTranslator(&languageTranslator);
-}
-
+///Функция запоминания настроек интерфейса
 void MainWindow::WrtieSettings()
 {
     QSettings settings("cw-it", "cw-it");
@@ -140,6 +188,8 @@ void MainWindow::WrtieSettings()
 
 }
 
+
+///Функция чтения настроек интерфейса
 void MainWindow::ReadSettings()
 {
     QSettings settings("cw-it", "cw-it");
@@ -157,29 +207,31 @@ void MainWindow::ReadSettings()
 
 }
 
+
+///Вывод данных на печать
 void MainWindow::on_actionPrint_triggered()
 {
+    //Настройка параметров печати
     QPrinter printer(QPrinter::HighResolution);
     printer.setOutputFormat(QPrinter::PdfFormat);
     printer.setOutputFileName(QDir::currentPath() + "/cw-it.pdf");
 
+    //Настройка параметров страницы
     printer.pageLayout().setMode(QPageLayout::FullPageMode);
     printer.setPageMargins(QMargins(0, 0, 0, 0));
     printer.setPageOrientation(QPageLayout::Orientation::Landscape);
 
-    /// Создаем диалоговое окно печати и устанавливаем настройки принтера
+    //Создаем диалоговое окно печати и устанавливаем настройки принтера
     QPrintDialog printDialog(&printer, nullptr);
     printDialog.setWindowTitle("Print");
     printDialog.setOptions(QAbstractPrintDialog::PrintToFile | QAbstractPrintDialog::PrintPageRange);
-
-    /// Установка стиля CSS для диалогового окна печати
-    printDialog.setStyleSheet("background-color: #272727; color: white;");
 
     if (printDialog.exec() != QDialog::Accepted)
     {
         return;
     }
 
+    //Запись данных в документ для вывода
     QString htmlTable;
     htmlTable = "<table border=1 cellspacing=1>\n"
                 "<caption>Учет вычислительной техники на балансе строительной компании</caption>\n"
@@ -208,7 +260,6 @@ void MainWindow::on_actionPrint_triggered()
        }
 
        htmlTable += "</tr>\n";
-
     }
 
     htmlTable += "</table>\n<br>\n";
@@ -219,12 +270,14 @@ void MainWindow::on_actionPrint_triggered()
     QTextBrowser textBrowser;
     textBrowser.setDocument(&document);
 
+    //Печать документа
     textBrowser.print(&printer);
 
     return;
 }
 
 
+///Показать диаграмму
 void MainWindow::on_actionShow_triggered()
 {
 
@@ -248,18 +301,4 @@ void MainWindow::on_actionShow_triggered()
         return;
     }
 
-}
-
-
-void MainWindow::on_action_New_File_triggered()
-{
-    OpenedFile *file = new OpenedFile;
-    fileHandler.NewFile(file);
-
-    QString fileName = QString::fromStdString(fileHandler.getFileName());
-    ui->tabWidget->addTab(new TabPage(nullptr, file), fileName);
-    ui->tabWidget->setCurrentIndex(ui->tabWidget->count()-1);
-
-    ui->actionPrint->setEnabled(1);
-    ui->actionShow->setEnabled(1);
 }

@@ -4,13 +4,19 @@
 #include <QTableWidgetItem>
 
 
+/// \brief Класс для проверки введенных пользователем данных
 class Validator
 {
 public:
 
+
+    ///Конструктор класса
     Validator();
 
+    ///Проверка ввода цены
     void PriceInput(QTableWidgetItem *item, std::map<std::string, std::string> *currentLine);
+
+    ///Проверка ввода даты
     void DateInput(QTableWidgetItem *item, std::map<std::string, std::string> *currentLine);
 
 };

@@ -3,6 +3,7 @@
 #include <QtCharts>
 
 
+///Конструктор
 Chart::Chart(QWidget *parent, std::vector<float> price) :
     QMainWindow(parent),
     ui(new Ui::Chart)
@@ -21,11 +22,15 @@ Chart::Chart(QWidget *parent, std::vector<float> price) :
 
 }
 
+
+///Деструктор
 Chart::~Chart()
 {
     delete ui;
 }
 
+
+///Создание графика
 void Chart::CreateChart(std::vector<float> price)
 {
 

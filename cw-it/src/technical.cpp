@@ -1,5 +1,7 @@
 #include "technical.h"
 
+
+///Разбиение строки по разделителям
 vector<string> SplitLine (string line, string delimiter)
 {
     vector<string> vector;
