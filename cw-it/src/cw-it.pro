@@ -20,6 +20,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     openedfile.cpp \
+    table.cpp \
     tabpage.cpp \
     technical.cpp \
     validator.cpp
@@ -34,6 +35,7 @@ HEADERS += \
     filereadingerror.h \
     mainwindow.h \
     openedfile.h \
+    table.h \
     tabpage.h \
     technical.h \
     validator.h

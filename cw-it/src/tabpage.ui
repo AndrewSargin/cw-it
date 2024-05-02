@@ -18,15 +18,27 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="3" column="0" colspan="3">
-    <widget class="QTableWidget" name="tableWidget">
+    <widget class="Table" name="tableWidget">
      <property name="contextMenuPolicy">
       <enum>Qt::CustomContextMenu</enum>
+     </property>
+     <property name="acceptDrops">
+      <bool>true</bool>
+     </property>
+     <property name="dragEnabled">
+      <bool>true</bool>
+     </property>
+     <property name="dragDropOverwriteMode">
+      <bool>false</bool>
      </property>
      <property name="dragDropMode">
       <enum>QAbstractItemView::DragDrop</enum>
      </property>
      <property name="defaultDropAction">
-      <enum>Qt::CopyAction</enum>
+      <enum>Qt::IgnoreAction</enum>
+     </property>
+     <property name="alternatingRowColors">
+      <bool>true</bool>
      </property>
      <attribute name="horizontalHeaderCascadingSectionResizes">
       <bool>false</bool>
@@ -36,9 +48,6 @@
      </attribute>
      <attribute name="horizontalHeaderStretchLastSection">
       <bool>true</bool>
-     </attribute>
-     <attribute name="verticalHeaderStretchLastSection">
-      <bool>false</bool>
      </attribute>
     </widget>
    </item>
@@ -70,6 +79,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>Table</class>
+   <extends>QTableWidget</extends>
+   <header location="global">table.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

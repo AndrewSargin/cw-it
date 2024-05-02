@@ -38,9 +38,6 @@ private slots:
     ///Удаление выбранной строки
     void on_deleteEntry_triggered();
 
-    ///Создает строку в указанном месте
-    void NewRow(int row);
-
     ///При изменении поискового запроса
     void on_lineEdit_textChanged(const QString &arg1);
 

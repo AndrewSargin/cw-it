@@ -61,6 +61,7 @@ SOURCES       = ../cw-it/src/about.cpp \
 		../cw-it/src/main.cpp \
 		../cw-it/src/mainwindow.cpp \
 		../cw-it/src/openedfile.cpp \
+		../cw-it/src/table.cpp \
 		../cw-it/src/tabpage.cpp \
 		../cw-it/src/technical.cpp \
 		../cw-it/src/validator.cpp qrc_qmake_qmake_qm_files.cpp \
@@ -69,6 +70,7 @@ SOURCES       = ../cw-it/src/about.cpp \
 		moc_chart.cpp \
 		moc_filereadingerror.cpp \
 		moc_mainwindow.cpp \
+		moc_table.cpp \
 		moc_tabpage.cpp
 OBJECTS       = about.o \
 		askforsave.o \
@@ -79,6 +81,7 @@ OBJECTS       = about.o \
 		main.o \
 		mainwindow.o \
 		openedfile.o \
+		table.o \
 		tabpage.o \
 		technical.o \
 		validator.o \
@@ -88,6 +91,7 @@ OBJECTS       = about.o \
 		moc_chart.o \
 		moc_filereadingerror.o \
 		moc_mainwindow.o \
+		moc_table.o \
 		moc_tabpage.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
@@ -178,6 +182,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		../cw-it/src/filereadingerror.h \
 		../cw-it/src/mainwindow.h \
 		../cw-it/src/openedfile.h \
+		../cw-it/src/table.h \
 		../cw-it/src/tabpage.h \
 		../cw-it/src/technical.h \
 		../cw-it/src/validator.h ../cw-it/src/about.cpp \
@@ -189,6 +194,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		../cw-it/src/main.cpp \
 		../cw-it/src/mainwindow.cpp \
 		../cw-it/src/openedfile.cpp \
+		../cw-it/src/table.cpp \
 		../cw-it/src/tabpage.cpp \
 		../cw-it/src/technical.cpp \
 		../cw-it/src/validator.cpp
@@ -385,8 +391,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents ../cw-it/src/languages/cw-it_ru_RU.ts ../cw-it/src/languages/cw-it_en_US.ts $(DISTDIR)/
 	$(COPY_FILE) --parents qmake_qmake_qm_files.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../cw-it/src/about.h ../cw-it/src/askforsave.h ../cw-it/src/chart.h ../cw-it/src/constants.h ../cw-it/src/entry.h ../cw-it/src/filehandler.h ../cw-it/src/filereadingerror.h ../cw-it/src/mainwindow.h ../cw-it/src/openedfile.h ../cw-it/src/tabpage.h ../cw-it/src/technical.h ../cw-it/src/validator.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../cw-it/src/about.cpp ../cw-it/src/askforsave.cpp ../cw-it/src/chart.cpp ../cw-it/src/entry.cpp ../cw-it/src/filehandler.cpp ../cw-it/src/filereadingerror.cpp ../cw-it/src/main.cpp ../cw-it/src/mainwindow.cpp ../cw-it/src/openedfile.cpp ../cw-it/src/tabpage.cpp ../cw-it/src/technical.cpp ../cw-it/src/validator.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../cw-it/src/about.h ../cw-it/src/askforsave.h ../cw-it/src/chart.h ../cw-it/src/constants.h ../cw-it/src/entry.h ../cw-it/src/filehandler.h ../cw-it/src/filereadingerror.h ../cw-it/src/mainwindow.h ../cw-it/src/openedfile.h ../cw-it/src/table.h ../cw-it/src/tabpage.h ../cw-it/src/technical.h ../cw-it/src/validator.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../cw-it/src/about.cpp ../cw-it/src/askforsave.cpp ../cw-it/src/chart.cpp ../cw-it/src/entry.cpp ../cw-it/src/filehandler.cpp ../cw-it/src/filereadingerror.cpp ../cw-it/src/main.cpp ../cw-it/src/mainwindow.cpp ../cw-it/src/openedfile.cpp ../cw-it/src/table.cpp ../cw-it/src/tabpage.cpp ../cw-it/src/technical.cpp ../cw-it/src/validator.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../cw-it/src/about.ui ../cw-it/src/askforsave.ui ../cw-it/src/chart.ui ../cw-it/src/filereadingerror.ui ../cw-it/src/mainwindow.ui ../cw-it/src/tabpage.ui $(DISTDIR)/
 	$(COPY_FILE) --parents ../cw-it/src/languages/cw-it_ru_RU.ts ../cw-it/src/languages/cw-it_en_US.ts $(DISTDIR)/
 
@@ -436,9 +442,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -std=gnu++11 -Wall -Wextra -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_about.cpp moc_askforsave.cpp moc_chart.cpp moc_filereadingerror.cpp moc_mainwindow.cpp moc_tabpage.cpp
+compiler_moc_header_make_all: moc_about.cpp moc_askforsave.cpp moc_chart.cpp moc_filereadingerror.cpp moc_mainwindow.cpp moc_table.cpp moc_tabpage.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_about.cpp moc_askforsave.cpp moc_chart.cpp moc_filereadingerror.cpp moc_mainwindow.cpp moc_tabpage.cpp
+	-$(DEL_FILE) moc_about.cpp moc_askforsave.cpp moc_chart.cpp moc_filereadingerror.cpp moc_mainwindow.cpp moc_table.cpp moc_tabpage.cpp
 moc_about.cpp: ../cw-it/src/about.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
@@ -468,6 +474,11 @@ moc_mainwindow.cpp: ../cw-it/src/mainwindow.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vboxuser/Documents/Uni/Kurs 2/build-cw-it-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vboxuser/Documents/Uni/Kurs 2/cw-it/src' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtCharts -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../cw-it/src/mainwindow.h -o moc_mainwindow.cpp
+
+moc_table.cpp: ../cw-it/src/table.h \
+		moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vboxuser/Documents/Uni/Kurs 2/build-cw-it-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vboxuser/Documents/Uni/Kurs 2/cw-it/src' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtCharts -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../cw-it/src/table.h -o moc_table.cpp
 
 moc_tabpage.cpp: ../cw-it/src/tabpage.h \
 		../cw-it/src/openedfile.h \
@@ -504,7 +515,8 @@ ui_mainwindow.h: ../cw-it/src/mainwindow.ui \
 	/usr/lib/qt5/bin/uic ../cw-it/src/mainwindow.ui -o ui_mainwindow.h
 
 ui_tabpage.h: ../cw-it/src/tabpage.ui \
-		/usr/lib/qt5/bin/uic
+		/usr/lib/qt5/bin/uic \
+		../cw-it/src/table.h
 	/usr/lib/qt5/bin/uic ../cw-it/src/tabpage.ui -o ui_tabpage.h
 
 compiler_yacc_decl_make_all:
@@ -570,6 +582,9 @@ openedfile.o: ../cw-it/src/openedfile.cpp ../cw-it/src/openedfile.h \
 		../cw-it/src/entry.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o openedfile.o ../cw-it/src/openedfile.cpp
 
+table.o: ../cw-it/src/table.cpp ../cw-it/src/table.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o table.o ../cw-it/src/table.cpp
+
 tabpage.o: ../cw-it/src/tabpage.cpp ../cw-it/src/tabpage.h \
 		../cw-it/src/openedfile.h \
 		../cw-it/src/entry.h \
@@ -601,6 +616,9 @@ moc_filereadingerror.o: moc_filereadingerror.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
+
+moc_table.o: moc_table.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_table.o moc_table.cpp
 
 moc_tabpage.o: moc_tabpage.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_tabpage.o moc_tabpage.cpp

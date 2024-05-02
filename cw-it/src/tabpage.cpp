@@ -74,6 +74,7 @@ TabPage::TabPage(QWidget *parent, OpenedFile *file) :
 
     //Запоминаем открытый файл
     currentFile = file;
+    ui->tableWidget->SetFile(file);
 
     //Разрешаем таблице получать сигналы
     ui->tableWidget->blockSignals(0);
@@ -100,11 +101,11 @@ void TabPage::on_tableWidget_cellChanged(int row, int column)
     //Почему-то при DragAndDrop в колонку с идентификатором
     //создается новая строчка, хотя вообще ничего не должно происходить,
     //поэтому просто удаляю новую строку
-    if (column == 0)
+    /*if (column == 0)
     {
         ui->tableWidget->removeRow(row);
         return;
-    }
+    }*/
 
     QTableWidgetItem *item = ui->tableWidget->item(row, column);
 
@@ -172,11 +173,8 @@ void TabPage::on_addAfter_triggered()
 {
     int row = ui->tableWidget->currentRow() + 1;
 
-    //Изменяем статус файла на "изменен"
-    currentFile->isChanged = true;
-
     //Создаем новую строку
-    NewRow(row);
+    ui->tableWidget->NewRow(row);
 }
 
 
@@ -185,11 +183,8 @@ void TabPage::on_addBefore_triggered()
 {
     int row = ui->tableWidget->currentRow();
 
-    //Изменяем статус файла на "изменен"
-    currentFile->isChanged = true;
-
     //Создаем новую строку
-    NewRow(row);
+    ui->tableWidget->NewRow(row);
 }
 
 
@@ -211,62 +206,6 @@ void TabPage::on_deleteEntry_triggered()
         //Удаляем соответствующие данные из файла
         currentFile->data.erase(id);
     }
-}
-
-
-///Создание новой строки
-void TabPage::NewRow(int row)
-{
-    //Создаем строку
-    ui->tableWidget->insertRow(row);
-
-    //Блокируем сигналы таблице
-    ui->tableWidget->blockSignals(1);
-
-    //Создаем экземпляр класса Entry
-    Entry newEntry = Entry();
-
-    //Ищем ключ, который можно присвоить новой строке
-    bool found = false;
-    int key = 1;
-    auto iterator = currentFile->data.begin();
-
-    //Поскольку минимальный ключ в таблице раввен 1, и ключи идут
-    //по возрастанию, можно просто перебирать по порядку все числа,
-    //пока не найдем такое число, которого нет в таблице
-    while(!found)
-    {
-        if (key == iterator->first)
-        {
-            key++;
-            iterator++;
-        }
-        else found = true;
-    }
-
-    //В экземпляр класса Enty записываем некоторые данные
-    //необходимые для корректной работы программы
-    newEntry.properties["Id"] = std::to_string(key);
-    newEntry.properties["Cost"] = "1";
-
-    //Записываем в данные из файла новую строку
-    currentFile->data[std::stoi(newEntry.properties["Id"])] = newEntry;
-
-    for(int j = 0; j < 11; j++)
-    {
-        QTableWidgetItem *item = new QTableWidgetItem(QString::fromStdString(currentFile->data.at(key).properties.at(entryProps[j])));
-
-        if(j == 0 || j == 9)
-            item->setData(Qt::EditRole, std::stoi(newEntry.properties.at(entryProps[j])));
-        else item->setData(Qt::EditRole, QString(""));
-
-        ui->tableWidget->setItem(row, j, item);
-        if (j == 0)
-            item->setFlags(Qt::ItemIsEnabled);
-    }
-
-    //Разрешаем таблице принимать сигналы
-    ui->tableWidget->blockSignals(0);
 }
 
 

@@ -20,6 +20,8 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "mainwindow.h", "mainwindow_8h_source.html", null ],
     [ "openedfile.cpp", "openedfile_8cpp_source.html", null ],
     [ "openedfile.h", "openedfile_8h_source.html", null ],
+    [ "table.cpp", "table_8cpp_source.html", null ],
+    [ "table.h", "table_8h_source.html", null ],
     [ "tabpage.cpp", "tabpage_8cpp_source.html", null ],
     [ "tabpage.h", "tabpage_8h_source.html", null ],
     [ "technical.cpp", "technical_8cpp_source.html", null ],

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['openedfile_0',['OpenedFile',['../classOpenedFile.html',1,'']]]
+  ['openedfile_0',['OpenedFile',['../class_opened_file.html',1,'']]]
 ];

@@ -1,20 +1,23 @@
 var hierarchy =
 [
-    [ "Entry", "classEntry.html", null ],
-    [ "FileHandler", "classFileHandler.html", null ],
-    [ "OpenedFile", "classOpenedFile.html", null ],
+    [ "Entry", "class_entry.html", null ],
+    [ "FileHandler", "class_file_handler.html", null ],
+    [ "OpenedFile", "class_opened_file.html", null ],
     [ "QDialog", null, [
-      [ "About", "classAbout.html", null ],
-      [ "AboutWindow", "classAboutWindow.html", null ],
-      [ "AskForSave", "classAskForSave.html", null ],
-      [ "FileReadingError", "classFileReadingError.html", null ]
+      [ "About", "class_about.html", null ],
+      [ "AboutWindow", "class_about_window.html", null ],
+      [ "AskForSave", "class_ask_for_save.html", null ],
+      [ "FileReadingError", "class_file_reading_error.html", null ]
     ] ],
     [ "QMainWindow", null, [
-      [ "Chart", "classChart.html", null ],
-      [ "MainWindow", "classMainWindow.html", null ]
+      [ "Chart", "class_chart.html", null ],
+      [ "MainWindow", "class_main_window.html", null ]
+    ] ],
+    [ "QTableWidget", null, [
+      [ "Table", "class_table.html", null ]
     ] ],
     [ "QWidget", null, [
-      [ "TabPage", "classTabPage.html", null ]
+      [ "TabPage", "class_tab_page.html", null ]
     ] ],
-    [ "Validator", "classValidator.html", null ]
+    [ "Validator", "class_validator.html", null ]
 ];

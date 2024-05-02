@@ -16,8 +16,8 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QSpacerItem>
-#include <QtWidgets/QTableWidget>
 #include <QtWidgets/QWidget>
+#include <table.h>
 
 QT_BEGIN_NAMESPACE
 
@@ -25,7 +25,7 @@ class Ui_TabPage
 {
 public:
     QGridLayout *gridLayout;
-    QTableWidget *tableWidget;
+    Table *tableWidget;
     QSpacerItem *horizontalSpacer;
     QLineEdit *lineEdit;
     QLabel *label;
@@ -38,15 +38,18 @@ public:
         TabPage->setContextMenuPolicy(Qt::DefaultContextMenu);
         gridLayout = new QGridLayout(TabPage);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
-        tableWidget = new QTableWidget(TabPage);
+        tableWidget = new Table(TabPage);
         tableWidget->setObjectName(QString::fromUtf8("tableWidget"));
         tableWidget->setContextMenuPolicy(Qt::CustomContextMenu);
+        tableWidget->setAcceptDrops(true);
+        tableWidget->setDragEnabled(true);
+        tableWidget->setDragDropOverwriteMode(false);
         tableWidget->setDragDropMode(QAbstractItemView::DragDrop);
-        tableWidget->setDefaultDropAction(Qt::CopyAction);
+        tableWidget->setDefaultDropAction(Qt::IgnoreAction);
+        tableWidget->setAlternatingRowColors(true);
         tableWidget->horizontalHeader()->setCascadingSectionResizes(false);
         tableWidget->horizontalHeader()->setDefaultSectionSize(100);
         tableWidget->horizontalHeader()->setStretchLastSection(true);
-        tableWidget->verticalHeader()->setStretchLastSection(false);
 
         gridLayout->addWidget(tableWidget, 3, 0, 1, 3);
 
