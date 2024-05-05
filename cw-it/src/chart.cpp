@@ -1,10 +1,11 @@
 #include "chart.h"
 #include "ui_chart.h"
 #include <QtCharts>
+#include <algorithm>
 
 
 ///Конструктор
-Chart::Chart(QWidget *parent, std::vector<float> price) :
+Chart::Chart(QWidget *parent, std::vector<std::vector<float>> vector) :
     QMainWindow(parent),
     ui(new Ui::Chart)
 {
@@ -16,10 +17,15 @@ Chart::Chart(QWidget *parent, std::vector<float> price) :
     int y = (availableGeometry.height() - this->height()) / 2;
     this->move(x, y);
 
-    setWindowTitle(tr("Computer distribution chart depending on price"));
+    setWindowTitle(tr("Chart of total price of computers depending on RAM and memory"));
 
-    CreateChart(price);
+    CreateChart(vector);
 
+}
+
+bool sortcol(const std::vector<float>& v1, const std::vector<float>& v2)
+{
+    return v1[0]<v2[0];
 }
 
 
@@ -31,43 +37,63 @@ Chart::~Chart()
 
 
 ///Создание графика
-void Chart::CreateChart(std::vector<float> price)
+void Chart::CreateChart(std::vector<std::vector<float>> data)
 {
+    QBarSeries *series = new QBarSeries;
 
-    QBarSet *dataSet = new QBarSet(tr("Number of computers"));
-    QBarSeries *series = new QBarSeries();
+    std::vector<float> memoryList;
+    std::vector<float> ramList;
+
+    QStringList ramLabels;
+
+    std::sort(data.begin(), data.end(), sortcol);
+
+    for (int i = 0; i < (int) data.size(); i++)
+    {
+        if(std::find(memoryList.begin(), memoryList.end(), data[i][1]) == memoryList.end())
+            memoryList.push_back(data[i][1]);
+
+        if(std::find(ramList.begin(), ramList.end(), data[i][0]) == ramList.end())
+        {
+            ramList.push_back(data[i][0]);
+            ramLabels.push_back(QString::number(data[i][0]));
+        }
+
+    }
+
+    std::sort(memoryList.begin(), memoryList.end());
+
+    for (int i = 0; i < (int) memoryList.size(); i++)
+    {
+        QBarSet *set = new QBarSet(QString::number(memoryList[i]));
+
+        float price = 0;
+
+        for(int j = 0; j < (int) ramList.size(); j++)
+        {
+            for(int k = 0; k < (int) data.size(); k++)
+            {
+                if (data[k][1] == memoryList[i] && ramList[j] == data[k][0])
+                {
+                    price += data[k][2];
+                }
+            }
+
+            *set << price;
+            price = 0;
+        }
+
+        series->append(set);
+    }
+
     QChart *chart = new QChart();
     QChartView *chartView = new QChartView(chart);
 
-    QStringList barTitles;
 
-    std::sort(price.begin(), price.end());
-
-    int barAmount = 1 + int(log2(price.size()));
-
-    float step = (price[price.size() - 1] - price[0]) / barAmount;
-
-    for (int i = 0,  j = 0; i < barAmount; i++)
-    {
-        int barData = 0;
-        QString left = QString::number(price[0] + i * step);
-        QString right = QString::number(price[0] + (i+1) * step);
-        barTitles.append(left + " - " + right);
-
-        while ((price[j] <= (price[0] + (i + 1) * step) && j < (int) price.size()))
-        {
-            barData +=1;
-            j++;
-        }
-
-        *dataSet << barData;
-    }
-
-    series->append(dataSet);
     chart->addSeries(series);
 
     QBarCategoryAxis *axisX = new QBarCategoryAxis();
-    axisX->append(barTitles);
+    axisX->append(ramLabels);
 
     chart->addAxis(axisX, Qt::AlignBottom);
     series->attachAxis(axisX);
@@ -76,7 +102,7 @@ void Chart::CreateChart(std::vector<float> price)
     chart->addAxis(axisY, Qt::AlignLeft);
     series->attachAxis(axisY);
 
-    chart->setTitle(tr("Number of computers depending on price"));
+    chart->setTitle(tr("Total price of computers depending on RAM and memory"));
 
     this->setCentralWidget(chartView);
     this->resize(1000, 600);

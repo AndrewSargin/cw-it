@@ -98,14 +98,6 @@ TabPage::~TabPage()
 ///При изменении содержимого ячейки
 void TabPage::on_tableWidget_cellChanged(int row, int column)
 {
-    //Почему-то при DragAndDrop в колонку с идентификатором
-    //создается новая строчка, хотя вообще ничего не должно происходить,
-    //поэтому просто удаляю новую строку
-    /*if (column == 0)
-    {
-        ui->tableWidget->removeRow(row);
-        return;
-    }*/
 
     QTableWidgetItem *item = ui->tableWidget->item(row, column);
 
@@ -118,10 +110,17 @@ void TabPage::on_tableWidget_cellChanged(int row, int column)
     //Изменяем состояние файла на "изменен"
     currentFile->isChanged = true;
 
+    //Блокируем таблице сигналы
+    ui->tableWidget->blockSignals(1);
+
     //В зависимости от колонки, в которой изменилась ячейка таблицы,
     //проверяем соответствующие данные
     switch(column)
     {
+    case 4: validate.RamInput(item, currentLine);
+        break;
+    case 5: validate.MemoryInput(item, currentLine);
+        break;
     case 9: validate.PriceInput(item, currentLine);
         break;
     case 10: validate.DateInput(item, currentLine);
@@ -130,6 +129,9 @@ void TabPage::on_tableWidget_cellChanged(int row, int column)
 
     //Записываем в данные из файла информацию из ячейки таблицы
     currentLine->at(entryProps[column]) = item->text().toStdString();
+
+    //Разрешаем таблице принимать сигналы
+    ui->tableWidget->blockSignals(0);
 }
 
 

@@ -9,6 +9,7 @@
 #include "filehandler.h"
 #include "askforsave.h"
 #include "chart.h"
+#include "technical.h"
 
 
 ///Создаем единственный на программу экземпляр класса FileHandler
@@ -119,7 +120,7 @@ void MainWindow::on_action_2_triggered()
 }
 
 
-///Функция "Сохранить как
+///Функция "Сохранить как"
 void MainWindow::on_actionSave_As_triggered()
 {
     if(ui->tabWidget->count() != 0)
@@ -281,10 +282,14 @@ void MainWindow::on_actionPrint_triggered()
 void MainWindow::on_actionShow_triggered()
 {
 
-    std::vector<float> price;
-    std::map<int, Entry> data = fileHandler.getFileData(ui->tabWidget->currentIndex());
 
-    for (auto i = data.begin(); i != data.end(); i++)
+    std::map<int, Entry> data = fileHandler.getFileData(ui->tabWidget->currentIndex());
+    std::vector<std::vector<float>> vector = ConvertChartData(data);
+
+    Chart *newChart = new Chart(this, vector);
+    newChart->show();
+
+    /*for (auto i = data.begin(); i != data.end(); i++)
     {
         if (i->second.properties.at("Cost") != "")
             price.push_back(std::stof(i->second.properties.at("Cost")));
@@ -292,13 +297,13 @@ void MainWindow::on_actionShow_triggered()
 
     if(price.size() > 0)
     {
-        Chart *newChart = new Chart(this, price);
+        Chart *newChart = new Chart(this, vector);
         newChart->show();
     }
     else
     {
         QMessageBox::warning(this, "", tr("No data to put in chart"));
         return;
-    }
+    }*/
 
 }

@@ -41,18 +41,13 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../chart.cpp" line="18"/>
-        <source>Computer distribution chart depending on price</source>
+        <location filename="../chart.cpp" line="20"/>
+        <source>Chart of total price of computers depending on RAM and memory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../chart.cpp" line="32"/>
-        <source>Number of computers</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../chart.cpp" line="74"/>
-        <source>Number of computers depending on price</source>
+        <location filename="../chart.cpp" line="105"/>
+        <source>Total price of computers depending on RAM and memory</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -154,22 +149,17 @@ p, li { white-space: pre-wrap; }
         <source>Save As</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="247"/>
-        <source>No data to put in chart</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../filehandler.cpp" line="19"/>
+        <location filename="../filehandler.cpp" line="24"/>
         <source>Open File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../filehandler.cpp" line="82"/>
-        <location filename="../filehandler.cpp" line="107"/>
+        <location filename="../filehandler.cpp" line="138"/>
+        <location filename="../filehandler.cpp" line="180"/>
         <source>Save Document</source>
         <translation type="unfinished"></translation>
     </message>
@@ -182,22 +172,22 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tabpage.ui" line="67"/>
+        <location filename="../tabpage.ui" line="76"/>
         <source> Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tabpage.cpp" line="106"/>
+        <location filename="../tabpage.cpp" line="142"/>
         <source>Add after</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tabpage.cpp" line="107"/>
+        <location filename="../tabpage.cpp" line="143"/>
         <source>Add before</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tabpage.cpp" line="108"/>
+        <location filename="../tabpage.cpp" line="144"/>
         <source>Delete row</source>
         <translation type="unfinished"></translation>
     </message>

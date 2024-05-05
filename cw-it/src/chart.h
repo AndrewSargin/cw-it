@@ -17,13 +17,13 @@ class Chart : public QMainWindow
 public:
 
     ///Конструктор
-    explicit Chart(QWidget *parent = nullptr, std::vector<float> price = std::vector<float>());
+    explicit Chart(QWidget *parent = nullptr, std::vector<std::vector<float>> price = std::vector<std::vector<float>>());
 
     ///Деструктор
     ~Chart();
 
     ///Создание графика
-    void CreateChart(std::vector<float> price);
+    void CreateChart(std::vector<std::vector<float>>);
 
 private:
 

@@ -60,19 +60,26 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="../chart.cpp" line="18"/>
         <source>Computer distribution chart depending on price</source>
-        <translation>График распределения компьютеорв в зависимости от цены</translation>
+        <translation type="vanished">График распределения компьютеорв в зависимости от цены</translation>
     </message>
     <message>
-        <location filename="../chart.cpp" line="32"/>
         <source>Number of computers</source>
-        <translation>Количество компьютеров</translation>
+        <translation type="vanished">Количество компьютеров</translation>
     </message>
     <message>
-        <location filename="../chart.cpp" line="74"/>
         <source>Number of computers depending on price</source>
-        <translation>Количество компьютеорв в зависимости от цены</translation>
+        <translation type="vanished">Количество компьютеорв в зависимости от цены</translation>
+    </message>
+    <message>
+        <location filename="../chart.cpp" line="20"/>
+        <source>Chart of total price of computers depending on RAM and memory</source>
+        <translation>График общаей цены компьютеорв в зависимости от ОЗУ и памяти</translation>
+    </message>
+    <message>
+        <location filename="../chart.cpp" line="105"/>
+        <source>Total price of computers depending on RAM and memory</source>
+        <translation>Общая цена компьютеорв в зависимости от ОЗУ и памяти</translation>
     </message>
 </context>
 <context>
@@ -175,21 +182,20 @@ p, li { white-space: pre-wrap; }
         <translation>Сохранить как</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="247"/>
         <source>No data to put in chart</source>
-        <translation>Нет данных для графика</translation>
+        <translation type="vanished">Нет данных для графика</translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../filehandler.cpp" line="19"/>
+        <location filename="../filehandler.cpp" line="24"/>
         <source>Open File</source>
         <translation>Открыть файл</translation>
     </message>
     <message>
-        <location filename="../filehandler.cpp" line="82"/>
-        <location filename="../filehandler.cpp" line="107"/>
+        <location filename="../filehandler.cpp" line="138"/>
+        <location filename="../filehandler.cpp" line="180"/>
         <source>Save Document</source>
         <translation>Сохранить файл</translation>
     </message>
@@ -202,22 +208,22 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="../tabpage.ui" line="67"/>
+        <location filename="../tabpage.ui" line="76"/>
         <source> Search</source>
         <translation>Поиск</translation>
     </message>
     <message>
-        <location filename="../tabpage.cpp" line="106"/>
+        <location filename="../tabpage.cpp" line="142"/>
         <source>Add after</source>
         <translation>Добавить после</translation>
     </message>
     <message>
-        <location filename="../tabpage.cpp" line="107"/>
+        <location filename="../tabpage.cpp" line="143"/>
         <source>Add before</source>
         <translation>Добавить до</translation>
     </message>
     <message>
-        <location filename="../tabpage.cpp" line="108"/>
+        <location filename="../tabpage.cpp" line="144"/>
         <source>Delete row</source>
         <translation>Удалить строку</translation>
     </message>
