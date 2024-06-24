@@ -56,6 +56,10 @@ private slots:
     //Перевести программу на русский
     void on_actionRussian_triggered();
 
+    //Перевести программу на армянский
+    void on_action_HY_triggered();
+
+
     //Печать документа
     void on_actionPrint_triggered();
 

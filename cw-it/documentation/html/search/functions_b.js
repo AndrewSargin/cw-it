@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['save_0',['save',['../class_file_handler.html#ae80baa6f607d61c67e4f07ccea88e61f',1,'FileHandler']]],
-  ['saveas_1',['saveAs',['../class_file_handler.html#a8cd76c56766ea65abce4cb335fec1f6d',1,'FileHandler']]],
-  ['setfile_2',['SetFile',['../class_table.html#a409b116b97414b162fb1dd346924bf57',1,'Table']]]
+  ['raminput_0',['RamInput',['../class_validator.html#af298b00527146f7c33d3e15a33b672f8',1,'Validator']]],
+  ['readsettings_1',['ReadSettings',['../class_main_window.html#a4abba2c52f756524c0f388d0d3e6d6ec',1,'MainWindow']]]
 ];

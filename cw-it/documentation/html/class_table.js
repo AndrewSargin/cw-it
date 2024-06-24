@@ -5,5 +5,6 @@ var class_table =
     [ "mimeData", "class_table.html#a6ebadd9b344b744c2a41c5b22f0f17b3", null ],
     [ "mimeTypes", "class_table.html#a03fb4fe6362359ea22cd4698dc61f91d", null ],
     [ "NewRow", "class_table.html#a444505234d72ad3503f8e32f3c0655a0", null ],
-    [ "SetFile", "class_table.html#a409b116b97414b162fb1dd346924bf57", null ]
+    [ "SetFile", "class_table.html#a409b116b97414b162fb1dd346924bf57", null ],
+    [ "currentFile", "class_table.html#a8d762cf89186c59ba3078abf7d48a52e", null ]
 ];

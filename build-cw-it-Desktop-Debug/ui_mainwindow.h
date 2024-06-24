@@ -36,6 +36,7 @@ public:
     QAction *actionShow;
     QAction *action_New_File;
     QAction *actionSave_As;
+    QAction *action_HY;
     QWidget *centralwidget;
     QHBoxLayout *horizontalLayout;
     QTabWidget *tabWidget;
@@ -73,6 +74,8 @@ public:
         action_New_File->setObjectName(QString::fromUtf8("action_New_File"));
         actionSave_As = new QAction(MainWindow);
         actionSave_As->setObjectName(QString::fromUtf8("actionSave_As"));
+        action_HY = new QAction(MainWindow);
+        action_HY->setObjectName(QString::fromUtf8("action_HY"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         centralwidget->setEnabled(true);
@@ -120,6 +123,7 @@ public:
         menu_2->addAction(action_4);
         menuChange_Language->addAction(actionEnglish);
         menuChange_Language->addAction(actionRussian);
+        menuChange_Language->addAction(action_HY);
         menuPrice_Diagram->addAction(actionShow);
 
         retranslateUi(MainWindow);
@@ -143,6 +147,7 @@ public:
         actionShow->setText(QCoreApplication::translate("MainWindow", "Show", nullptr));
         action_New_File->setText(QCoreApplication::translate("MainWindow", "New File", nullptr));
         actionSave_As->setText(QCoreApplication::translate("MainWindow", "Save As", nullptr));
+        action_HY->setText(QCoreApplication::translate("MainWindow", "\325\260\325\241\325\265\325\245\326\200\325\245\325\266 (HY)", nullptr));
         menu->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
         menu_2->setTitle(QCoreApplication::translate("MainWindow", "Other", nullptr));
         menuChange_Language->setTitle(QCoreApplication::translate("MainWindow", "Change Language", nullptr));

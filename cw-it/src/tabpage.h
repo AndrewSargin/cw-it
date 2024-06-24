@@ -8,7 +8,7 @@ namespace Ui {
 class TabPage;
 }
 
-/// \brief Класс страницы в QtTabWidget
+/// \brief Класс страницы в QTabWidget
 class TabPage : public QWidget
 {
     Q_OBJECT

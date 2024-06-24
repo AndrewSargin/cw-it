@@ -2,5 +2,6 @@
 <qresource prefix="i18n">
 <file alias="cw-it_ru_RU.qm">/home/vboxuser/Documents/Uni/Kurs 2/build-cw-it-Desktop-Debug/.qm/cw-it_ru_RU.qm</file>
 <file alias="cw-it_en_US.qm">/home/vboxuser/Documents/Uni/Kurs 2/build-cw-it-Desktop-Debug/.qm/cw-it_en_US.qm</file>
+<file alias="cw-it_hy_HY.qm">/home/vboxuser/Documents/Uni/Kurs 2/build-cw-it-Desktop-Debug/.qm/cw-it_hy_HY.qm</file>
 </qresource>
 </RCC>

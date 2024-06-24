@@ -144,7 +144,7 @@ void MainWindow::on_action_3_triggered()
         ui->tabWidget->removeTab(index);
         fileHandler.close(index);
     }
-    //Если в QTabWidget нет страниц, то закрываем саму программу
+    //Если в QTabWidget нет страниц, то закрываем саму программуWr
     else MainWindow::close();
 }
 
@@ -161,6 +161,13 @@ void MainWindow::on_actionEnglish_triggered()
 void MainWindow::on_actionRussian_triggered()
 {
     if(languageTranslator.load(".qm/cw-it_ru_RU."))
+        qApp->installTranslator(&languageTranslator);
+}
+
+
+void MainWindow::on_action_HY_triggered()
+{
+    if(languageTranslator.load(".qm/cw-it_hy_HY."))
         qApp->installTranslator(&languageTranslator);
 }
 

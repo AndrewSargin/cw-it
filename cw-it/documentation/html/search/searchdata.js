@@ -1,9 +1,9 @@
 var indexSectionsWithContent =
 {
-  0: "acdefgimnopstv~",
+  0: "acdefgimnoprstvw~",
   1: "acefmotv",
-  2: "acdefgimnopstv~",
-  3: "dfip"
+  2: "acdefgimnoprstvw~",
+  3: "cdfip"
 };
 
 var indexSectionNames =
@@ -16,9 +16,9 @@ var indexSectionNames =
 
 var indexSectionLabels =
 {
-  0: "All",
-  1: "Classes",
-  2: "Functions",
-  3: "Variables"
+  0: "Указатель",
+  1: "Классы",
+  2: "Функции",
+  3: "Переменные"
 };
 

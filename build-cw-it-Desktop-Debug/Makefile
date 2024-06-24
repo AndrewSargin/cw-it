@@ -388,13 +388,13 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../cw-it/src/languages/cw-it_ru_RU.ts ../cw-it/src/languages/cw-it_en_US.ts $(DISTDIR)/
+	$(COPY_FILE) --parents ../cw-it/src/languages/cw-it_ru_RU.ts ../cw-it/src/languages/cw-it_en_US.ts ../cw-it/src/languages/cw-it_hy_HY.ts $(DISTDIR)/
 	$(COPY_FILE) --parents qmake_qmake_qm_files.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../cw-it/src/about.h ../cw-it/src/askforsave.h ../cw-it/src/chart.h ../cw-it/src/constants.h ../cw-it/src/entry.h ../cw-it/src/filehandler.h ../cw-it/src/filereadingerror.h ../cw-it/src/mainwindow.h ../cw-it/src/openedfile.h ../cw-it/src/table.h ../cw-it/src/tabpage.h ../cw-it/src/technical.h ../cw-it/src/validator.h $(DISTDIR)/
 	$(COPY_FILE) --parents ../cw-it/src/about.cpp ../cw-it/src/askforsave.cpp ../cw-it/src/chart.cpp ../cw-it/src/entry.cpp ../cw-it/src/filehandler.cpp ../cw-it/src/filereadingerror.cpp ../cw-it/src/main.cpp ../cw-it/src/mainwindow.cpp ../cw-it/src/openedfile.cpp ../cw-it/src/table.cpp ../cw-it/src/tabpage.cpp ../cw-it/src/technical.cpp ../cw-it/src/validator.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../cw-it/src/about.ui ../cw-it/src/askforsave.ui ../cw-it/src/chart.ui ../cw-it/src/filereadingerror.ui ../cw-it/src/mainwindow.ui ../cw-it/src/tabpage.ui $(DISTDIR)/
-	$(COPY_FILE) --parents ../cw-it/src/languages/cw-it_ru_RU.ts ../cw-it/src/languages/cw-it_en_US.ts $(DISTDIR)/
+	$(COPY_FILE) --parents ../cw-it/src/languages/cw-it_ru_RU.ts ../cw-it/src/languages/cw-it_en_US.ts ../cw-it/src/languages/cw-it_hy_HY.ts $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -418,14 +418,17 @@ check: first
 
 benchmark: first
 
-compiler_lrelease_make_all: .qm/cw-it_ru_RU.qm .qm/cw-it_en_US.qm
+compiler_lrelease_make_all: .qm/cw-it_ru_RU.qm .qm/cw-it_en_US.qm .qm/cw-it_hy_HY.qm
 compiler_lrelease_clean:
-	-$(DEL_FILE) .qm/cw-it_ru_RU.qm .qm/cw-it_en_US.qm
+	-$(DEL_FILE) .qm/cw-it_ru_RU.qm .qm/cw-it_en_US.qm .qm/cw-it_hy_HY.qm
 .qm/cw-it_ru_RU.qm: ../cw-it/src/languages/cw-it_ru_RU.ts
 	/usr/lib/qt5/bin/lrelease ../cw-it/src/languages/cw-it_ru_RU.ts -qm .qm/cw-it_ru_RU.qm
 
 .qm/cw-it_en_US.qm: ../cw-it/src/languages/cw-it_en_US.ts
 	/usr/lib/qt5/bin/lrelease ../cw-it/src/languages/cw-it_en_US.ts -qm .qm/cw-it_en_US.qm
+
+.qm/cw-it_hy_HY.qm: ../cw-it/src/languages/cw-it_hy_HY.ts
+	/usr/lib/qt5/bin/lrelease ../cw-it/src/languages/cw-it_hy_HY.ts -qm .qm/cw-it_hy_HY.qm
 
 compiler_rcc_make_all: qrc_qmake_qmake_qm_files.cpp
 compiler_rcc_clean:
@@ -433,7 +436,8 @@ compiler_rcc_clean:
 qrc_qmake_qmake_qm_files.cpp: qmake_qmake_qm_files.qrc \
 		/usr/lib/qt5/bin/rcc \
 		.qm/cw-it_ru_RU.qm \
-		.qm/cw-it_en_US.qm
+		.qm/cw-it_en_US.qm \
+		.qm/cw-it_hy_HY.qm
 	/usr/lib/qt5/bin/rcc -name qmake_qmake_qm_files qmake_qmake_qm_files.qrc -o qrc_qmake_qmake_qm_files.cpp
 
 compiler_moc_predefs_make_all: moc_predefs.h
@@ -476,6 +480,8 @@ moc_mainwindow.cpp: ../cw-it/src/mainwindow.h \
 	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vboxuser/Documents/Uni/Kurs 2/build-cw-it-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vboxuser/Documents/Uni/Kurs 2/cw-it/src' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtCharts -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../cw-it/src/mainwindow.h -o moc_mainwindow.cpp
 
 moc_table.cpp: ../cw-it/src/table.h \
+		../cw-it/src/openedfile.h \
+		../cw-it/src/entry.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/vboxuser/Documents/Uni/Kurs 2/build-cw-it-Desktop-Debug/moc_predefs.h' -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/vboxuser/Documents/Uni/Kurs 2/cw-it/src' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtCharts -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../cw-it/src/table.h -o moc_table.cpp
@@ -516,7 +522,9 @@ ui_mainwindow.h: ../cw-it/src/mainwindow.ui \
 
 ui_tabpage.h: ../cw-it/src/tabpage.ui \
 		/usr/lib/qt5/bin/uic \
-		../cw-it/src/table.h
+		../cw-it/src/table.h \
+		../cw-it/src/openedfile.h \
+		../cw-it/src/entry.h
 	/usr/lib/qt5/bin/uic ../cw-it/src/tabpage.ui -o ui_tabpage.h
 
 compiler_yacc_decl_make_all:
@@ -575,14 +583,18 @@ mainwindow.o: ../cw-it/src/mainwindow.cpp ../cw-it/src/mainwindow.h \
 		../cw-it/src/entry.h \
 		../cw-it/src/filehandler.h \
 		../cw-it/src/askforsave.h \
-		../cw-it/src/chart.h
+		../cw-it/src/chart.h \
+		../cw-it/src/technical.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../cw-it/src/mainwindow.cpp
 
 openedfile.o: ../cw-it/src/openedfile.cpp ../cw-it/src/openedfile.h \
 		../cw-it/src/entry.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o openedfile.o ../cw-it/src/openedfile.cpp
 
-table.o: ../cw-it/src/table.cpp ../cw-it/src/table.h
+table.o: ../cw-it/src/table.cpp ../cw-it/src/table.h \
+		../cw-it/src/openedfile.h \
+		../cw-it/src/entry.h \
+		../cw-it/src/constants.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o table.o ../cw-it/src/table.cpp
 
 tabpage.o: ../cw-it/src/tabpage.cpp ../cw-it/src/tabpage.h \
@@ -593,10 +605,14 @@ tabpage.o: ../cw-it/src/tabpage.cpp ../cw-it/src/tabpage.h \
 		../cw-it/src/validator.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tabpage.o ../cw-it/src/tabpage.cpp
 
-technical.o: ../cw-it/src/technical.cpp ../cw-it/src/technical.h
+technical.o: ../cw-it/src/technical.cpp ../cw-it/src/technical.h \
+		../cw-it/src/entry.h \
+		../cw-it/src/constants.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o technical.o ../cw-it/src/technical.cpp
 
-validator.o: ../cw-it/src/validator.cpp ../cw-it/src/validator.h
+validator.o: ../cw-it/src/validator.cpp ../cw-it/src/validator.h \
+		../cw-it/src/technical.h \
+		../cw-it/src/entry.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o validator.o ../cw-it/src/validator.cpp
 
 qrc_qmake_qmake_qm_files.o: qrc_qmake_qmake_qm_files.cpp 

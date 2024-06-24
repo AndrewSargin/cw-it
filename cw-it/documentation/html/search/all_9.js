@@ -1,5 +1,25 @@
 var searchData=
 [
-  ['open_0',['open',['../class_file_handler.html#a36032b2a0bca9f6b3bd8230ed4c91703',1,'FileHandler']]],
-  ['openedfile_1',['OpenedFile',['../class_opened_file.html',1,'OpenedFile'],['../class_opened_file.html#a08fbf3feab494c52234cfd691e38dcf3',1,'OpenedFile::OpenedFile()']]]
+  ['on_5faction_5f2_5ftriggered_0',['on_action_2_triggered',['../class_main_window.html#a96b2f43d5179497eb3010c8a8038e766',1,'MainWindow']]],
+  ['on_5faction_5f3_5ftriggered_1',['on_action_3_triggered',['../class_main_window.html#a9d9ae020d2c9185484e7aa8ddca53d5b',1,'MainWindow']]],
+  ['on_5faction_5f4_5ftriggered_2',['on_action_4_triggered',['../class_main_window.html#a272f7d078632294922895df72f670fa9',1,'MainWindow']]],
+  ['on_5faction_5fnew_5ffile_5ftriggered_3',['on_action_New_File_triggered',['../class_main_window.html#a9fc754f4053bc120b5caeeb2fa281e84',1,'MainWindow']]],
+  ['on_5faction_5ftriggered_4',['on_action_triggered',['../class_main_window.html#a9026e7c3d6ea81020ff0442a34edee9e',1,'MainWindow']]],
+  ['on_5factionenglish_5ftriggered_5',['on_actionEnglish_triggered',['../class_main_window.html#ae36ab7fab3dc85d49dcec92da04c4f42',1,'MainWindow']]],
+  ['on_5factionprint_5ftriggered_6',['on_actionPrint_triggered',['../class_main_window.html#a214a1a535fdbf35b0ed12e26231eef56',1,'MainWindow']]],
+  ['on_5factionrussian_5ftriggered_7',['on_actionRussian_triggered',['../class_main_window.html#a18dc92671afbb0c795b3a54fccffe101',1,'MainWindow']]],
+  ['on_5factionsave_5fas_5ftriggered_8',['on_actionSave_As_triggered',['../class_main_window.html#a98e86ef6104b6e2910328af2f878438d',1,'MainWindow']]],
+  ['on_5factionshow_5ftriggered_9',['on_actionShow_triggered',['../class_main_window.html#a6a613ccc478617a7eba1a30b92107b59',1,'MainWindow']]],
+  ['on_5faddafter_5ftriggered_10',['on_addAfter_triggered',['../class_tab_page.html#a51e04c7a51f673365f92d022bcac5047',1,'TabPage']]],
+  ['on_5faddbefore_5ftriggered_11',['on_addBefore_triggered',['../class_tab_page.html#a2a2af50add75ad4cf54352711d7d053a',1,'TabPage']]],
+  ['on_5fbuttonbox_5faccepted_12',['on_buttonBox_accepted',['../class_ask_for_save.html#a6e9c0c7eec7714ccbb39012a2a326336',1,'AskForSave']]],
+  ['on_5fbuttonbox_5frejected_13',['on_buttonBox_rejected',['../class_ask_for_save.html#afd4e155cff520e5bc0977e1f1dd768b9',1,'AskForSave']]],
+  ['on_5fdeleteentry_5ftriggered_14',['on_deleteEntry_triggered',['../class_tab_page.html#ad2100bdee49cccdc710cca11105bf57b',1,'TabPage']]],
+  ['on_5flineedit_5ftextchanged_15',['on_lineEdit_textChanged',['../class_tab_page.html#a0090b62ac2db891b7dc4fbb0874ee8a3',1,'TabPage']]],
+  ['on_5fpushbutton_5fclicked_16',['on_pushButton_clicked',['../class_about.html#af39aab047fb77845d71974a6a3173c3f',1,'About']]],
+  ['on_5ftablewidget_5fcellchanged_17',['on_tableWidget_cellChanged',['../class_tab_page.html#ad44fa4c104a979b887a775fcf29f1c20',1,'TabPage']]],
+  ['on_5ftablewidget_5fcustomcontextmenurequested_18',['on_tableWidget_customContextMenuRequested',['../class_tab_page.html#a11b6b15dd78d42a4a4db1db70aa987f0',1,'TabPage']]],
+  ['on_5ftabwidget_5ftabcloserequested_19',['on_tabWidget_tabCloseRequested',['../class_main_window.html#a9dffd54dcb4ffd5cdee1278a1f3d6f3f',1,'MainWindow']]],
+  ['open_20',['open',['../class_file_handler.html#a36032b2a0bca9f6b3bd8230ed4c91703',1,'FileHandler']]],
+  ['openedfile_21',['OpenedFile',['../class_opened_file.html',1,'OpenedFile'],['../class_opened_file.html#a08fbf3feab494c52234cfd691e38dcf3',1,'OpenedFile::OpenedFile()']]]
 ];

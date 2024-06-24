@@ -74,7 +74,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../chart.cpp" line="20"/>
         <source>Chart of total price of computers depending on RAM and memory</source>
-        <translation>График общаей цены компьютеорв в зависимости от ОЗУ и памяти</translation>
+        <translation>График общей цены компьютеорв в зависимости от ОЗУ и памяти</translation>
     </message>
     <message>
         <location filename="../chart.cpp" line="105"/>
@@ -126,60 +126,65 @@ p, li { white-space: pre-wrap; }
         <translation>Изменить язык</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="80"/>
+        <location filename="../mainwindow.ui" line="81"/>
         <source>Price Chart</source>
         <translation>График цены</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="95"/>
+        <location filename="../mainwindow.ui" line="96"/>
         <source>Open</source>
         <translation>Открыть</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="100"/>
+        <location filename="../mainwindow.ui" line="101"/>
         <source>Save</source>
         <translation>Сохранить</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="105"/>
+        <location filename="../mainwindow.ui" line="106"/>
         <source>Close</source>
         <translation>Закрыть</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="110"/>
+        <location filename="../mainwindow.ui" line="111"/>
         <source>About</source>
         <translation>Об авторе</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="115"/>
+        <location filename="../mainwindow.ui" line="116"/>
         <source>English (EN)</source>
         <oldsource>English</oldsource>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="120"/>
+        <location filename="../mainwindow.ui" line="121"/>
         <source>Русский (RU)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="128"/>
+        <location filename="../mainwindow.ui" line="129"/>
         <source>Print</source>
         <translation>Печать</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="136"/>
+        <location filename="../mainwindow.ui" line="137"/>
         <source>Show</source>
         <translation>Показать</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="141"/>
+        <location filename="../mainwindow.ui" line="142"/>
         <source>New File</source>
         <translation>Новый файл</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="146"/>
+        <location filename="../mainwindow.ui" line="147"/>
         <source>Save As</source>
         <translation>Сохранить как</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="152"/>
+        <source>Հայոց լեզու (HY)</source>
+        <translation></translation>
     </message>
     <message>
         <source>No data to put in chart</source>
@@ -213,17 +218,17 @@ p, li { white-space: pre-wrap; }
         <translation>Поиск</translation>
     </message>
     <message>
-        <location filename="../tabpage.cpp" line="142"/>
+        <location filename="../tabpage.cpp" line="144"/>
         <source>Add after</source>
         <translation>Добавить после</translation>
     </message>
     <message>
-        <location filename="../tabpage.cpp" line="143"/>
+        <location filename="../tabpage.cpp" line="145"/>
         <source>Add before</source>
         <translation>Добавить до</translation>
     </message>
     <message>
-        <location filename="../tabpage.cpp" line="144"/>
+        <location filename="../tabpage.cpp" line="146"/>
         <source>Delete row</source>
         <translation>Удалить строку</translation>
     </message>
